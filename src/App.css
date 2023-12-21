@@ -2,4 +2,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "Rammetto One", sans-serif;
+}
+.ss-contact-label {
+  color: #09405e;
+}
+.font-poppins {
+  font-family: "Poppins";
 }
