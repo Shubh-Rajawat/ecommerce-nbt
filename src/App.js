@@ -8,17 +8,19 @@ import About from './pages/About';
 import Footer from './components/common/header/Footer';
 import Products from './pages/Products';
 import SingleProduct from './pages/SingleProduct';
+import Notification from './pages/Notification';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Header />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/info" element={<SingleProduct />} />
+          <Route path="/" element={ <Header /> } />
+          <Route path="/contact" element={ <Contact /> } />
+          <Route path="/about" element={ <About /> } />
+          <Route path="/products" element={ <Products /> } />
+          <Route path="/info" element={ <SingleProduct /> } />
+          <Route path="/notification" element={ <Notification /> } />
         </Routes>
         <Footer />
       </BrowserRouter>
