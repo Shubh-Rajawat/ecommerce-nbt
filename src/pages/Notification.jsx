@@ -1,12 +1,7 @@
-import React from 'react'
-import Header from '../components/common/header/Header'
+import React from "react";
 
 const Notification = () => {
-    return (
-        <div className='h-full' >
-            <Header />
-        </div>
-    )
-}
+  return <div className="h-full">nuhyytg</div>;
+};
 
-export default Notification
+export default Notification;

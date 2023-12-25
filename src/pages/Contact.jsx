@@ -2,7 +2,7 @@ import React from "react";
 import contact from "../static/assets/contactimg.svg";
 const Contact = () => {
   return (
-    <div className="">
+    <div className="space1">
       <div className="xl:max-w-[1320px]  w-full   mx-auto  overflow-hidden md:flex md:px-0 px-4 ">
         <div className="ss-left-img flex-1 md:rounded-l-[50px] md:rounded-r-none rounded-[30px] overflow-hidden">
           <img

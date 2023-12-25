@@ -9,7 +9,7 @@ const pro = [1, 2];
 const Cart = () => {
   return (
     <div>
-      <div className="ss-container  mt-20">
+      <div className="ss-container  space1">
         <div className="grid grid-cols-7 gap-8">
           <div className=" col-span-4 ">
             {pro &&
