@@ -64,10 +64,31 @@
   font-family: "Poppins";
   font-weight: 600;
 }
+.text-5pl {
+  font-size: 16px;
+  color: #777777;
+  font-family: "Poppins";
+}
+.text-7pl {
+  color: #d63348;
+  font-size: 16px;
+  font-family: "Rammetto One", sans-serif;
+}
+.text-6pl {
+  color: black;
+  font-size: 26px;
+  font-family: "Rammetto One", sans-serif;
+}
+.text-8pl {
+  color: #09405e;
+  font-size: 18px;
+  font-family: "Rammetto One", sans-serif;
+}
 .ss-info-text {
   font-size: 18px;
   font-family: "Poppins" !important;
 }
+
 /* background colors */
 .bg-prime-blue {
   background-color: #09405e;
