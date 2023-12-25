@@ -36,3 +36,59 @@
 .btn-red:hover {
   background-color: #cc132c;
 }
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sks-swiper-home
+  .swiper-horizontal
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  left: 10% !important;
+}
+.sks-swiper-home .swiper-pagination-bullet-active {
+  background-color: #cc132c !important;
+}
+/* .sks-swiper-home .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 1) !important;
+} */
+.swiper-pagination-bullet {
+  opacity: 1 !important;
+  background-color: white !important;
+}
+.para-text {
+  color: #777777;
+  font-family: "Poppins";
+  font-size: 18px;
+}
+
+.sks-about-home::before {
+  content: "";
+  background: url("../assets/drra.png");
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: -30px;
+  left: 0;
+  height: 40px;
+  z-index: 1;
+}
