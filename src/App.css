@@ -51,12 +51,16 @@
 }
 .text-1pl {
   color: #d63348;
-
   font-size: 24px;
   font-family: "Rammetto One", sans-serif;
 }
 .text-3pl {
   font-size: 24px;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+.text-4pl {
+  font-size: 20px;
   font-family: "Poppins";
   font-weight: 600;
 }
@@ -80,12 +84,10 @@
   .text-black {
     color: black;
     font-size: 22px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-red {
     color: #d63348;
     font-size: 22px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-base {
     color: #777777;
@@ -95,6 +97,19 @@
   }
   .ss-info-text {
     font-size: 13px;
+  }
+  .text-2pl {
+    font-size: 20px;
+  }
+  .text-3pl {
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 600;
+  }
+  .text-1pl {
+    color: #d63348;
+    font-size: 18px;
+    font-family: "Rammetto One", sans-serif;
   }
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -105,12 +120,10 @@
   .text-black {
     color: black;
     font-size: 22px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-red {
     color: #d63348;
     font-size: 22px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-base {
     color: #777777;
@@ -120,6 +133,19 @@
   }
   .ss-info-text {
     font-size: 13px;
+  }
+  .text-2pl {
+    font-size: 24px;
+  }
+  .text-3pl {
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 600;
+  }
+  .text-1pl {
+    color: #d63348;
+    font-size: 19px;
+    font-family: "Rammetto One", sans-serif;
   }
 }
 
@@ -131,12 +157,10 @@
   .text-black {
     color: black;
     font-size: 32px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-red {
     color: #d63348;
     font-size: 32px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-base {
     color: #777777;
@@ -147,6 +171,19 @@
   .ss-info-text {
     font-size: 14px;
   }
+  .text-2pl {
+    font-size: 22px;
+  }
+  .text-3pl {
+    font-size: 18px;
+    font-family: "Poppins";
+    font-weight: 600;
+  }
+  .text-1pl {
+    color: #d63348;
+    font-size: 20px;
+    font-family: "Rammetto One", sans-serif;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -156,12 +193,10 @@
   .text-black {
     color: black;
     font-size: 36px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-red {
     color: #d63348;
     font-size: 36px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-base {
     color: #777777;
@@ -172,6 +207,19 @@
   .ss-info-text {
     font-size: 16px;
   }
+  .text-2pl {
+    font-size: 28px;
+  }
+  .text-3pl {
+    font-size: 20px;
+    font-family: "Poppins";
+    font-weight: 600;
+  }
+  .text-1pl {
+    color: #d63348;
+    font-size: 22px;
+    font-family: "Rammetto One", sans-serif;
+  }
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 1024px) {
@@ -181,18 +229,24 @@
   .text-black {
     color: black;
     font-size: 38px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-red {
     color: #d63348;
     font-size: 38px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-base {
     color: #777777;
     font-size: 16px;
     line-height: 28px;
     font-family: "Poppins";
+  }
+  .text-2pl {
+    font-size: 30px;
+  }
+  .text-3pl {
+    font-size: 22px;
+    font-family: "Poppins";
+    font-weight: 600;
   }
 }
 
@@ -205,12 +259,10 @@
   .text-black {
     color: black;
     font-size: 45px;
-    font-family: "Rammetto One", sans-serif;
   }
   .text-red {
     color: #d63348;
     font-size: 45px;
-    font-family: "Rammetto One", sans-serif;
   }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
