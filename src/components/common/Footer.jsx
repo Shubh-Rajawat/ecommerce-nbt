@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-center md:justify-evenly md:items-center py-12 lg:py-20 w-full px-6 sm:px-8 md:px-12 lg:px-20 gap-8">
-        <div className="text-4xl font-extrabold font-sans">
+        <div className="text-4xl font-extrabold ">
           Download Our App
           <p className=" break-words text-sm font-normal mt-3 text-center md:text-start">
             Lorem Ipsum is simply dummy text of the printing and typesetting

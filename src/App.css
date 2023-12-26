@@ -28,6 +28,12 @@
 }
 
 /* main text colors */
+.red {
+  color: #d63348;
+}
+.blue {
+  color: #09405e;
+}
 .text-black {
   color: black;
   font-size: 50px;
@@ -91,6 +97,11 @@
   font-size: 26px;
   font-family: "Rammetto One", sans-serif;
 }
+.text-1cl {
+  color: black;
+  font-size: 30px;
+  font-family: "Rammetto One", sans-serif;
+}
 .text-8pl {
   color: #09405e;
   font-size: 18px;
@@ -100,6 +111,16 @@
 .ss-info-text {
   font-size: 18px;
   font-family: "Poppins" !important;
+}
+/* cart */
+.text-2cl {
+  color: #09405e;
+  font-size: 30px;
+  font-family: "Rammetto One", sans-serif;
+}
+.text-3cl {
+  font-size: 24px;
+  font-family: "Rammetto One", sans-serif;
 }
 
 /* background colors */
@@ -139,8 +160,19 @@ footer:before {
 }
 
 .space1 {
-  margin: 100px 0px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
+.text-1nl {
+  font-size: 24px;
+  font-family: "Poppins";
+  font-weight: 600;
+  color: #09405e;
+}
+.text-2nl {
+  font-size: 60px;
+}
+
 /* media queries */
 @media only screen and (max-width: 599px) {
   .ss-container {
@@ -186,6 +218,21 @@ footer:before {
   .space1 {
     margin-top: 25px;
     margin-bottom: 28px;
+  }
+  .text-1cl {
+    font-size: 18px;
+  }
+  .text-1nl {
+    font-size: 16px;
+  }
+  .text-2nl {
+    font-size: 42px;
+  }
+  .text-2cl {
+    font-size: 18px;
+  }
+  .text-3cl {
+    font-size: 18px;
   }
 }
 
@@ -235,6 +282,21 @@ footer:before {
     margin-top: 30px;
     margin-bottom: 25px;
   }
+  .text-1cl {
+    font-size: 20px;
+  }
+  .text-1nl {
+    font-size: 18px;
+  }
+  .text-2nl {
+    font-size: 45px;
+  }
+  .text-2cl {
+    font-size: 18px;
+  }
+  .text-3cl {
+    font-size: 18px;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -283,6 +345,21 @@ footer:before {
     margin-top: 40px;
     margin-bottom: 35px;
   }
+  .text-1cl {
+    font-size: 22px;
+  }
+  .text-1nl {
+    font-size: 18px;
+  }
+  .text-2nl {
+    font-size: 50px;
+  }
+  .text-2cl {
+    font-size: 19px;
+  }
+  .text-3cl {
+    font-size: 18px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
@@ -330,6 +407,21 @@ footer:before {
     margin-top: 45px;
     margin-bottom: 40px;
   }
+  .text-1cl {
+    font-size: 24px;
+  }
+  .text-1nl {
+    font-size: 18px;
+  }
+  .text-2nl {
+    font-size: 50px;
+  }
+  .text-2cl {
+    font-size: 21px;
+  }
+  .text-3cl {
+    font-size: 20px;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -361,12 +453,25 @@ footer:before {
 
   .text-3pl {
     font-size: 22px;
-    font-family: "Poppins";
-    font-weight: 600;
   }
   .space1 {
     margin-top: 50px;
     margin-bottom: 45px;
+  }
+  .text-1cl {
+    font-size: 26px;
+  }
+  .text-1nl {
+    font-size: 20px;
+  }
+  .text-2nl {
+    font-size: 55px;
+  }
+  .text-2cl {
+    font-size: 23px;
+  }
+  .text-3cl {
+    font-size: 22px;
   }
 }
 
@@ -389,15 +494,18 @@ footer:before {
     margin-top: 56px;
     margin-bottom: 50px;
   }
+
+  .text-2cl {
+    font-size: 26px;
+  }
+  .text-3cl {
+    font-size: 24px;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1536px) {
   .ss-container {
     max-width: 1400px;
-  }
-
-  .ss-container {
-    /* 2xl:max-w-[1320px] xl:max-w-[1200px] */
   }
 }

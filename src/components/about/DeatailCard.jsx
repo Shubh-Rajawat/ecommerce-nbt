@@ -3,8 +3,8 @@ import about1 from "../../static/assets/about1.svg";
 import about2 from "../../static/assets/about2.svg";
 const DeatailCard = () => {
   return (
-    <div className="ss-container   w-full   mx-auto mt-36">
-      <div className=" md:flex flex-none md:mb-20 mb-11">
+    <div className="ss-container   w-full   mx-auto ">
+      <div className=" md:flex flex-none md:mb-20 mb-11 space1">
         <div className="ss-about-img flex-1  rounded-[30px] overflow-hidden">
           <img src={about1} alt="" className="     w-full  h-full " />
         </div>

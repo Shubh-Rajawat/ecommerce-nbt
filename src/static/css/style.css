@@ -22,7 +22,8 @@
   background-position: center;
 }
 
-.sks-homeImg h1 {}
+.sks-homeImg h1 {
+}
 
 .banner-btns button {
   font-weight: 400;
@@ -33,12 +34,23 @@
   background-color: #d63348;
   color: white;
   border-radius: 50px;
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-family: "Rammetto One";
 }
 
 .btn-red:hover {
   background-color: #cc132c;
+}
+.btn-blue {
+  background-color: #09405e;
+  color: white;
+  border-radius: 50px;
+  padding: 10px 30px;
+  font-family: "Rammetto One";
+}
+
+.btn-blue:hover {
+  background-color: #0d4c6e;
 }
 
 .swiper {
