@@ -33,13 +33,36 @@
   background-color: #d63348;
   color: white;
   border-radius: 50px;
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-family: "Rammetto One";
 }
 
 .btn-red:hover {
   background-color: #cc132c;
 }
+
+/* .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
 .swiper {
   width: 100%;
   height: 100%;
@@ -120,26 +143,16 @@
   height: 40px;
   z-index: 1;
 }
-.swiper {
-  width: 100%;
-  height: 100%;
+.btn-blue {
+  background-color: #09405e;
+  color: white;
+  border-radius: 50px;
+  padding: 10px 30px;
+  font-family: "Rammetto One";
 }
 
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.btn-blue:hover {
+  background-color: #0d4c6e;
 }
 /* .swiper-wrapper {
   position: relative !important;

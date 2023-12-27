@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiShoppingCart, CiUser } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
 import { RiMenu3Fill } from "react-icons/ri";
 import logo from "../../static/assets/logo.png";
+import { useDispatch } from "react-redux";
+import { navAction } from "../../redux/slices/toggleNavSlice";
 const Header = () => {
+  const dispatch = useDispatch();
+
   return (
-    <header className="max-w-[1920px]">
+    <header className="max-w-[1920px] relative">
       {/* upper header */}
       <div className="grid grid-cols-3">
         <div className=""></div>
@@ -28,7 +32,12 @@ const Header = () => {
           <img src={logo} alt="not-found" />
         </div>
         <div className="">
-          <RiMenu3Fill className="text-4xl font-extrabold" />
+          <RiMenu3Fill
+            className="text-4xl font-extrabold cursor-pointer"
+            onClick={() => {
+              dispatch(navAction.toggleNav());
+            }}
+          />
         </div>
       </div>
     </header>

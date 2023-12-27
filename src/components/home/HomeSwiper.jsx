@@ -9,8 +9,9 @@ import baner3 from "../../static/assets/banner3.png";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-
+import { useSelector } from "react-redux";
 const HomeSwiper = () => {
+  const { showNav } = useSelector((state) => state.nav);
   const data = [
     {
       heading1: "Make the",
@@ -42,6 +43,7 @@ const HomeSwiper = () => {
             clickable: true,
           }}
           modules={[Pagination]}
+          loop={true}
           className="mySwiper"
         >
           {data.map((res) => {
@@ -51,6 +53,15 @@ const HomeSwiper = () => {
                   className="sks-homeImg"
                   style={{ backgroundImage: `url(${res.background})` }}
                 >
+                  <div className=" w-full h-[50px]    relative overflow-hidden">
+                    <div
+                      className={` relative h-[50px] bg-[#09405E] w-full  ${
+                        showNav
+                          ? "   top-0  transition-all duration-[800ms]  ease-in-out"
+                          : "  -top-[50px] transition-all duration-[800ms]  ease-in-out"
+                      }     `}
+                    ></div>
+                  </div>
                   <div className="ss-container py-[10%]">
                     <div className="max-w-[540px]">
                       <h1 className="w-[90%]  xl:text-6xl md:text-4xl sm:text-3xl text-2xl lg:text-5xl leading-[40px] text-white ramto  text-center md:text-start">

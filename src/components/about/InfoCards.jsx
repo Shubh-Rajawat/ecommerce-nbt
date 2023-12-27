@@ -5,8 +5,8 @@ import location from "../../static/assets/location.svg";
 
 const InfoCards = () => {
   return (
-    <div className="ss-container mb-32">
-      <div className="flex gap-5 md:gap-8 md:flex-row flex-col">
+    <div className="ss-container ">
+      <div className="flex gap-5 md:gap-8 md:flex-row flex-col space1">
         <div className="bg-prime-blue flex-1 h-[200px] flex items-center justify-center rounded-2xl p-7">
           <div className="flex flex-col items-center justify-center gap-4">
             <div className="rounded-full w-[50px] h-[50px] bg-white flex items-center justify-center">
@@ -22,9 +22,9 @@ const InfoCards = () => {
             <div className="rounded-full w-[50px] h-[50px] bg-white flex items-center justify-center">
               <img src={sms} alt="" />
             </div>
-            <div className="">
-              <h4 className="text-white ss-info-text">
-                examplecompany@gmail .com
+            <div className=" overflow-hidden">
+              <h4 className="text-white ss-info-text text-center truncate">
+                examplecompany@gmail.com
               </h4>
             </div>
           </div>
