@@ -19,7 +19,7 @@ const data = [
 const Products = () => {
   const navigate = useNavigate();
   return (
-    <div className=" mt-24">
+    <div className="space1">
       <div className="ss-container ">
         <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 ">
           {data.map((item, index) => {
