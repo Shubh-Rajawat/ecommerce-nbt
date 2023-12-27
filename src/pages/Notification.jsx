@@ -10,7 +10,10 @@ const Notification = () => {
           {notify &&
             notify?.map((item, ind) => {
               return (
-                <div className="bg-white rounded-[20px] flex gap-3 mb-4 py-4 ps-3">
+                <div
+                  key={ind}
+                  className="bg-white rounded-[20px] flex gap-3 mb-4 py-4 ps-3"
+                >
                   <div className="">
                     <IoIosCheckmarkCircleOutline className="text-red-600  text-2nl" />
                   </div>
