@@ -15,7 +15,6 @@
 }
 
 .sks-homeImg {
-  background-image: url("../assets/homeimg.png");
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
@@ -41,19 +40,8 @@
 .btn-red:hover {
   background-color: #cc132c;
 }
-.btn-blue {
-  background-color: #09405e;
-  color: white;
-  border-radius: 50px;
-  padding: 10px 30px;
-  font-family: "Rammetto One";
-}
 
-.btn-blue:hover {
-  background-color: #0d4c6e;
-}
-
-.swiper {
+/* .swiper {
   width: 100%;
   height: 100%;
 }
@@ -73,4 +61,70 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+} */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sks-swiper-home
+  .swiper-horizontal
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  left: 10% !important;
+}
+.sks-swiper-home .swiper-pagination-bullet-active {
+  background-color: #cc132c !important;
+}
+
+.swiper-pagination-bullet {
+  opacity: 1 !important;
+  background-color: white !important;
+}
+.para-text {
+  color: #777777;
+  font-family: "Poppins";
+  font-size: 18px;
+}
+
+.sks-about-home::after {
+  content: "";
+  background: url("../assets/drra.png");
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: -30px;
+  left: 0;
+  height: 40px;
+  z-index: 1;
+}
+.btn-blue {
+  background-color: #09405e;
+  color: white;
+  border-radius: 50px;
+  padding: 10px 30px;
+  font-family: "Rammetto One";
+}
+
+.btn-blue:hover {
+  background-color: #0d4c6e;
+}
+/* .swiper-wrapper {
+  position: relative !important;
+} */
+
+.swiper-pagination {
+  bottom: 10% !important;
+  margin-left: 12%;
+  text-align: start;
 }

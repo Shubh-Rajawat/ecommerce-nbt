@@ -1,44 +1,92 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import HomeSwiper from "./HomeSwiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import image from "../../static/assets/burgur1.png";
 
+// import required modules
+import { Navigation } from "swiper/modules";
 const HomeComp = () => {
   const { showNav } = useSelector((state) => state.nav);
-  console.log("showNav", showNav);
+
+  const sliderData = [
+    {
+      heading1: "Chicken",
+      heading2: "Burger",
+
+      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      img: image,
+    },
+    {
+      heading1: "Chicken",
+      heading2: "Burger",
+
+      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      img: image,
+    },
+    {
+      heading1: "Chicken",
+      heading2: "Burger",
+
+      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      img: image,
+    },
+  ];
 
   return (
-    <div>
-      <div className="sks-homeImg">
-        <div className=" w-full h-[50px]    relative overflow-hidden">
-          <div
-            className={` relative h-[50px] bg-[#09405E] w-full    ${
-              showNav
-                ? "  -top-[50px] transition-all duration-[800ms]  ease-in-out"
-                : "   top-0  transition-all duration-[800ms]  ease-in-out"
-            }     `}
-          ></div>
-        </div>
-        <div className="ss-container py-[10%]">
-          <div className="max-w-[540px]">
-            <h1 className="w-[90%] text-6xl leading-[70px] text-white">
-              Make the <span className="text-[#D63348]"> amburger</span> great
-              again
-            </h1>
-            <p className="text-white font-[Poppins] py-5 w-[90%] text-lg">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the.
-            </p>
-            <div className="banner-btns flex gap-x-3">
-              <button className="text-white bg-[#D63348] rounded-3xl py-2 px-4 ">
-                View All Menu
-              </button>
-              <button className="text-[#D63348] bg-white rounded-3xl py-2 px-6">
-                Order Now
-              </button>
+    <>
+      <div>
+        <HomeSwiper />
+
+        {/* about home discription */}
+        <div className="sks-about-home relative">
+          <div className="ss-container   flex place-content-center">
+            <div className="  text-center py-[5%] max-w-[800px]">
+              <h1 className=" text-2xl popins font-extrabold lg:text-4xl xl:text-5xl 2xl:text-6xl">
+                About <span className="text-[#D63348] ramto">Ambù</span>
+              </h1>
+              <p className="popins py-4 para-text ">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book.
+              </p>
+              <button className="btn-red my-3 ramto">Find out more</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      {/* carousel second in home page */}
+      <div className="bg-[#E9AF22]">
+        <section className="ss-container bg-transparent">
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            loop={true}
+            className="mySwiper bg-transparent"
+          >
+            {sliderData.map((res) => {
+              return (
+                <SwiperSlide className=" ">
+                  <section className="flex bg-[#E9AF22]">
+                    <div className="">
+                      <h1>{res?.heading1}</h1>
+                      <h1>{res?.heading2}</h1>
+                      <p>{res?.para}</p>
+                    </div>
+                    <div className="">
+                      <img src={res?.img} className="w-100" />
+                    </div>
+                  </section>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </section>
+      </div>
+    </>
   );
 };
 

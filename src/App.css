@@ -139,7 +139,7 @@ footer {
 
 footer:before {
   content: "";
-  background: url(https://demourls.xyz/peschef/public/front/img/banner-after-img.png);
+  background: url("./static/assets/drra2.png");
   width: 100%;
   display: block;
   position: absolute;
@@ -175,6 +175,12 @@ footer:before {
 
 /* media queries */
 @media only screen and (max-width: 599px) {
+  .banner-btns button {
+    font-size: 15px !important;
+  }
+  .sks-homeImg {
+    background-size: 100% 100%;
+  }
   .ss-container {
     max-width: 540px;
   }
@@ -361,7 +367,14 @@ footer:before {
     font-size: 18px;
   }
 }
-
+@media only screen and (max-width: 810px) {
+  .swiper-pagination {
+    display: none;
+  }
+  .para-text {
+    font-size: 15px !important;
+  }
+}
 @media only screen and (min-width: 992px) {
   .ss-container {
     max-width: 960px;
