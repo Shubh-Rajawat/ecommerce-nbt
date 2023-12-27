@@ -3,3 +3,8 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,800&family=Plus+Jakarta+Sans&family=Poppins&family=Rammetto+One&display=swap");
+
+@font-face {
+  font-family: "spicy_riceregular";
+  src: url(../src//static//font/SpicyRice-Regular.ttf);
+}
