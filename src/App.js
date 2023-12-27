@@ -12,6 +12,7 @@ import SingleProduct from './pages/SingleProduct';
 import Notification from './pages/Notification';
 import Home from "./pages/Home";
 import Cart from './pages/Cart';
+import Address from './pages/Address';
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/info" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/address" element={<Address />} />
         </Routes>
         <Footer />
       </BrowserRouter>
