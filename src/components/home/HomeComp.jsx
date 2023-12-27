@@ -4,12 +4,36 @@ import HomeSwiper from "./HomeSwiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
+import image from "../../static/assets/burgur1.png";
 
 // import required modules
 import { Navigation } from "swiper/modules";
 const HomeComp = () => {
   const { showNav } = useSelector((state) => state.nav);
-  console.log("showNav", showNav);
+
+  const sliderData = [
+    {
+      heading1: "Chicken",
+      heading2: "Burger",
+
+      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      img: image,
+    },
+    {
+      heading1: "Chicken",
+      heading2: "Burger",
+
+      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      img: image,
+    },
+    {
+      heading1: "Chicken",
+      heading2: "Burger",
+
+      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      img: image,
+    },
+  ];
 
   return (
     <>
@@ -35,19 +59,33 @@ const HomeComp = () => {
         </div>
       </div>
       {/* carousel second in home page */}
-      <section>
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
-        </Swiper>
-      </section>
+      <div className="bg-[#E9AF22]">
+        <section className="ss-container bg-transparent">
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            loop={true}
+            className="mySwiper bg-transparent"
+          >
+            {sliderData.map((res) => {
+              return (
+                <SwiperSlide className=" ">
+                  <section className="flex bg-[#E9AF22]">
+                    <div className="">
+                      <h1>{res?.heading1}</h1>
+                      <h1>{res?.heading2}</h1>
+                      <p>{res?.para}</p>
+                    </div>
+                    <div className="">
+                      <img src={res?.img} className="w-100" />
+                    </div>
+                  </section>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </section>
+      </div>
     </>
   );
 };
