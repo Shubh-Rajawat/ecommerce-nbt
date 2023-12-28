@@ -1,7 +1,6 @@
 import React from "react";
 
 const AboutHomeComp = ({ aboutHomeComp }) => {
-  console.log("sedrsedrsd", aboutHomeComp);
   return (
     <>
       <div

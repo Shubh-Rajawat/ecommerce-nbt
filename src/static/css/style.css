@@ -7,7 +7,7 @@
 }
 
 .ramto {
-  font-family: "Rammetto One", sans-serif;
+  font-family: "Rammetto One" !important;
 }
 
 .shadow-1:hover {

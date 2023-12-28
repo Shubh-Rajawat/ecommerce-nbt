@@ -4,7 +4,10 @@ const Modal = ({ open, onClose, children }) => {
     //backdrop
     <div
       // onClick={onClose}
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e) => {
+        e.stopPropagation();
+        // onClose();
+      }}
       className={`fixed inset-0 flex justify-center z-50 items-center transition-colors ${
         open ? "visible bg-black/50" : "invisible"
       }`}
@@ -13,7 +16,7 @@ const Modal = ({ open, onClose, children }) => {
 
       <div
         // onClick={(e) => e.stopPropagation()}
-        className={`bg-white rounded-xl shadow p-6 transition-all select-none ${
+        className={`bg-white rounded-[16px] shadow transition-all select-none overflow-hidden ${
           open ? "scale-100 opacity-100" : "scale-125 opacity-0"
         }`}
       >
