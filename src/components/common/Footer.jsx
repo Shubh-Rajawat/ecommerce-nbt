@@ -4,6 +4,7 @@ import { BiLogoFacebook } from "react-icons/bi";
 import { FaInstagram } from "react-icons/fa";
 import { FaApple } from "react-icons/fa6";
 import { IoLogoGooglePlaystore } from "react-icons/io5";
+import DownloadIcon from "./DownloadIcon";
 
 const downloadApp = [
   {
@@ -25,7 +26,7 @@ const Footer = () => {
         <div className="w-48 md:w-64 mx-auto">
           <img src={logo} alt="" />
         </div>
-        <p className=" break-words">
+        <p className=" break-words popins">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry.{" "}
         </p>
@@ -39,31 +40,14 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-center md:justify-evenly md:items-center py-12 lg:py-20 w-full px-6 sm:px-8 md:px-12 lg:px-20 gap-8">
-        <div className="text-4xl font-extrabold ">
+        <div className="text-4xl font-extrabold ramto">
           Download Our App
-          <p className=" break-words text-sm font-normal mt-3 text-center md:text-start">
+          <p className=" break-words text-sm font-normal mt-3 text-center md:text-start popins">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.{" "}
           </p>
         </div>
-        <div className="flex gap-3">
-          {downloadApp?.map((item, i) => {
-            return (
-              <div
-                className="bg-red-600 rounded-full flex items-center py-2 px-5 md:gap-3 justify-between"
-                key={i}
-              >
-                <div className=" lg:text-xl xl:text-4xl">{item?.icon}</div>
-                <div className="flex flex-col">
-                  <span className="text-[8px]/[5px]">{item.text}</span>
-                  <span className="text-sm md:text-md font-semibold">
-                    {item.name}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <DownloadIcon downloadApp={downloadApp} />
       </div>
     </footer>
   );

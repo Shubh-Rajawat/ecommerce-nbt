@@ -82,7 +82,7 @@
   width: 100%;
   display: block;
   position: absolute;
-  top: -30px;
+  top: -35px;
   left: 0;
   height: 40px;
   z-index: 1;
@@ -98,6 +98,7 @@
   height: 40px;
   z-index: 1;
 }
+
 .btn-blue {
   background-color: #09405e;
   color: white;
@@ -126,8 +127,11 @@
 .home-about-swiper .swiper-button-prev:after,
 .swiper-button-next:after {
   background: #d63348 !important;
-  padding: 10px 15px !important;
+  padding: 10px 15px;
   border-radius: 50% !important;
-  font-size: 20px !important;
+  font-size: 20px;
   font-weight: bold !important;
+}
+.home-about-swiper .swiper-button-next:after {
+  font-size: 20px;
 }

@@ -368,6 +368,11 @@ footer:before {
   }
 }
 @media only screen and (max-width: 810px) {
+  .home-about-swiper .swiper-button-prev:after,
+  .swiper-button-next:after {
+    padding: 7px 10px !important;
+    font-size: 15px !important;
+  }
   .swiper-pagination {
     display: none;
   }
