@@ -10,8 +10,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useSelector } from "react-redux";
+import HorizontalNav from "../common/HorizontalNav";
 const HomeSwiper = () => {
-  const { showNav } = useSelector((state) => state.nav);
   const data = [
     {
       heading1: "Make the",
@@ -39,33 +39,25 @@ const HomeSwiper = () => {
     <>
       <div className="sks-swiper-home ">
         <Swiper
-          pagination={{
+          pagination={ {
             clickable: true,
-          }}
-          modules={[Pagination]}
-          loop={true}
+          } }
+          modules={ [ Pagination ] }
+          loop={ true }
           className="mySwiper"
         >
-          {data.map((res) => {
+          { data.map( ( res ) => {
             return (
               <SwiperSlide>
                 <div
                   className="sks-homeImg"
-                  style={{ backgroundImage: `url(${res.background})` }}
+                  style={ { backgroundImage: `url(${ res.background })` } }
                 >
-                  <div className=" w-full h-[50px]    relative overflow-hidden">
-                    <div
-                      className={` relative h-[50px] bg-[#09405E] w-full  ${
-                        showNav
-                          ? "   top-0  transition-all duration-[800ms]  ease-in-out"
-                          : "  -top-[50px] transition-all duration-[800ms]  ease-in-out"
-                      }     `}
-                    ></div>
-                  </div>
+                  {/* <HorizontalNav /> */ }
                   <div className="ss-container py-[10%]">
                     <div className="max-w-[540px]">
                       <h1 className="w-[90%]  xl:text-6xl md:text-4xl sm:text-3xl text-2xl lg:text-5xl leading-[40px] text-white ramto  text-center md:text-start">
-                        Make the{" "}
+                        Make the{ " " }
                         <span className="text-[#D63348]"> amburger</span> great
                         again
                       </h1>
@@ -86,7 +78,7 @@ const HomeSwiper = () => {
                 </div>
               </SwiperSlide>
             );
-          })}
+          } ) }
         </Swiper>
       </div>
     </>
