@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { CiShoppingCart, CiUser } from "react-icons/ci";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaUser } from "react-icons/fa6";
 import { RiMenu3Fill } from "react-icons/ri";
 import logo from "../../static/assets/logo.png";
 import { useDispatch } from "react-redux";
 import { navAction } from "../../redux/slices/toggleNavSlice";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import HorizontalNav from "./HorizontalNav";
+import { ImExit } from "react-icons/im";
+
 const Header = () => {
   const dispatch = useDispatch();
-
+  const [ dropDown, setDropDown ] = useState( false );
+  const navigate = useNavigate()
   return (
     <>
-      <header className=" relative overflow-hidden ">
+      <header className=" relative ">
         {/* upper header */ }
         <div className="grid grid-cols-3 ss-container">
           <div className=""></div>
@@ -23,9 +26,40 @@ const Header = () => {
               <FaLocationDot className="text-xl" /> 5331 Rexford Court ,Montgomery
               AL 36116
             </div>
-            <div className=" text-2xl md:text-3xl flex gap-2 font-semibold text-end">
+            <div className=" text-2xl md:text-3xl flex gap-2 font-semibold text-end relative">
               <CiShoppingCart />
-              <CiUser />
+              <CiUser
+                onClick={ () => {
+                  dispatch( navAction.toggleLoginSignup() );
+                } }
+              />
+              {/* Shubh code for dropdown */ }
+              {/* <button className="cursor-pointer outline-none bg-transparent"
+                onBlur={ () => {
+                  setDropDown( false );
+                } }
+                onClick={ () => {
+                  setDropDown( !dropDown );
+                } }
+              >
+                <img src="https://bit.ly/dan-abramov" alt="User" className="h-8  rounded-full border-2 border-white" />
+
+                { dropDown ?
+                  <div class="popins z-10 bg-[#F2F2F2]  rounded-xl shadow w-48 absolute top-11 right-[5%] rounded-tr-none">
+                    <ul class="py-2 text-[16px] text-slate-800 font-[600] text-left" >
+                      <li>
+                        <span onClick={ () => {
+                          navigate( '/profile' )
+                        } } class=" px-4  hover:bg-gray-300 flex items-baseline gap-2"><FaUser className="text-[#D63348] text-sm" />View Profile</span>
+                      </li>
+                      <li>
+                        <span class=" px-4  hover:bg-gray-300 flex items-center gap-2"><ImExit className="text-[#D63348] text-sm" /> Logout</span>
+                      </li>
+
+                    </ul>
+                  </div>
+                  : null }
+              </button> */}
             </div>
           </div>
         </div>
