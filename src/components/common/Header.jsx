@@ -28,13 +28,13 @@ const Header = () => {
             </div>
             <div className=" text-2xl md:text-3xl flex gap-2 font-semibold text-end relative">
               <CiShoppingCart />
-              <CiUser
+              {/* <CiUser
                 onClick={ () => {
                   dispatch( navAction.toggleLoginSignup() );
                 } }
-              />
+              /> */}
               {/* Shubh code for dropdown */ }
-              {/* <button className="cursor-pointer outline-none bg-transparent"
+              <button className="cursor-pointer outline-none bg-transparent"
                 onBlur={ () => {
                   setDropDown( false );
                 } }
@@ -43,7 +43,6 @@ const Header = () => {
                 } }
               >
                 <img src="https://bit.ly/dan-abramov" alt="User" className="h-8  rounded-full border-2 border-white" />
-
                 { dropDown ?
                   <div class="popins z-10 bg-[#F2F2F2]  rounded-xl shadow w-48 absolute top-11 right-[5%] rounded-tr-none">
                     <ul class="py-2 text-[16px] text-slate-800 font-[600] text-left" >
@@ -59,7 +58,7 @@ const Header = () => {
                     </ul>
                   </div>
                   : null }
-              </button> */}
+              </button>
             </div>
           </div>
         </div>
