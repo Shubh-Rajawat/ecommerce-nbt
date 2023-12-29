@@ -11,6 +11,7 @@ import Notification from "./pages/Notification";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Address from "./pages/Address";
+import OrderLocation from "./pages/OrderLocation";
 import OrderHistory from "./pages/OrderHistory";
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/info" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/address" element={<Address />} />
+          <Route path="/order-location" element={<OrderLocation />} />
           <Route path="/orders" element={<OrderHistory />} />
         </Routes>
         <Footer />

@@ -4,8 +4,11 @@ const Modal = ({ open, onClose, children }) => {
     //backdrop
     <div
       // onClick={onClose}
-      onClick={(e) => e.stopPropagation()}
-      className={`fixed inset-0 flex justify-center z-50 items-center transition-colors ${
+      // onClick={(e) => {
+      //   // e.stopPropagation();
+      //   onClose();
+      // }}
+      className={`fixed inset-0 flex justify-center z-[9999] items-center transition-colors ${
         open ? "visible bg-black/50" : "invisible"
       }`}
     >
@@ -13,13 +16,15 @@ const Modal = ({ open, onClose, children }) => {
 
       <div
         // onClick={(e) => e.stopPropagation()}
-        className={`bg-white rounded-xl shadow p-6 transition-all select-none ${
+        className={`bg-white rounded-[16px] shadow transition-all select-none overflow-hidden ${
           open ? "scale-100 opacity-100" : "scale-125 opacity-0"
         }`}
       >
         <button
-          onClick={onClose}
-          className="absolute top-2 right-2 p-1 rounded-lg text-gray-400 bg-white hover:bg-gray-50 hover:text-gray-600"
+          onClick={(e) => {
+            onClose();
+          }}
+          className="absolute top-2 right-2 cursor-pointer p-1 rounded-lg text-gray-400 z-40 bg-white hover:bg-gray-50 hover:text-gray-600"
         >
           <IoClose className="text-xl" />
         </button>
