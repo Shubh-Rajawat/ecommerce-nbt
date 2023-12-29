@@ -34,15 +34,15 @@ const Header = () => {
                   navigate( "/cart" );
                 } }
               />
-              <CiUser
+              {/* <CiUser
                 className="cursor-pointer "
                 onClick={ () => {
                   dispatch( navAction.toggleLoginSignup() );
                 } }
               />
-              <LoginSingup />
+              <LoginSingup /> */}
               {/* Shubh code for dropdown */ }
-              {/* <button className="cursor-pointer outline-none bg-transparent"
+              <button className="cursor-pointer outline-none bg-transparent"
                 onBlur={ () => {
                   setDropDown( false );
                 } }
@@ -67,7 +67,7 @@ const Header = () => {
                     </ul>
                   </div>
                   : null }
-              </button> */}
+              </button>
             </div>
           </div>
         </div>

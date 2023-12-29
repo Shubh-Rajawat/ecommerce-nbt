@@ -15,4 +15,4 @@ const BreadCrumb = ( { page } ) => {
     )
 }
 
-export default BreadCrumb
+export default BreadCrumb;
