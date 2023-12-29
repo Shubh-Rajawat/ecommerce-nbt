@@ -84,7 +84,7 @@ const Profile = () => {
                             )
                         } )
                     }
-                    <div className="text-center">
+                    <div className="text-center mb-8">
                         <button className="btn-red ">logout</button>
                     </div>
                 </div>
