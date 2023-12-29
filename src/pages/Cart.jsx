@@ -23,7 +23,10 @@ const Cart = () => {
               {pro &&
                 pro?.map((item, ind) => {
                   return (
-                    <div className="bg-[#F2F2F2]  flex gap-6 rounded-2xl 2xl:p-8 lg:p-6 p-4 relative overflow-hidden mb-4 xl:flex-row flex-col">
+                    <div
+                      key={ind}
+                      className="bg-[#F2F2F2]  flex gap-6 rounded-2xl 2xl:p-8 lg:p-6 p-4 relative overflow-hidden mb-4 xl:flex-row flex-col"
+                    >
                       <div className=" overflow-hidden flex-1 mx-auto">
                         <img src={p1} alt="" className="rounded-2xl" />
                       </div>

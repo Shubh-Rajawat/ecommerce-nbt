@@ -47,13 +47,12 @@ const OrderHistoryComp = () => {
 
                   <td className="px-6 py-4 ">
                     <button
-                      className={`border-hidden bg-[#D63348] rounded-3xl py-2 w-[90%] text-white ${
+                      className={`border-hidden rounded-3xl py-2 w-[90%] text-white ${
                         res?.status === "Cancel"
                           ? "bg-[#D63348]"
                           : "bg-[#2E5AAC]"
                       }`}
                     >
-                      {" "}
                       {res?.status}
                     </button>
                   </td>
