@@ -8,11 +8,12 @@ import { navAction } from "../../redux/slices/toggleNavSlice";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import HorizontalNav from "./HorizontalNav";
 import { ImExit } from "react-icons/im";
+import LoginSingup from "../user/LoginSingup";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [ dropDown, setDropDown ] = useState( false );
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <header className=" relative ">
@@ -23,18 +24,25 @@ const Header = () => {
           <div className="h-[45px] flex justify-between col-span-3 md:col-span-2 bg-[#D63348] pl-3 md:pl-10 py-2 rounded-bl-[45px] text-white">
             <div className="font-semibold text-xs md:text-md  flex items-center gap-2">
               { " " }
-              <FaLocationDot className="text-xl" /> 5331 Rexford Court ,Montgomery
-              AL 36116
+              <FaLocationDot className="text-xl" /> 5331 Rexford Court
+              ,Montgomery AL 36116
             </div>
             <div className=" text-2xl md:text-3xl flex gap-2 font-semibold text-end relative">
-              <CiShoppingCart />
-              {/* <CiUser
+              <CiShoppingCart
+                className="cursor-pointer "
+                onClick={ () => {
+                  navigate( "/cart" );
+                } }
+              />
+              <CiUser
+                className="cursor-pointer "
                 onClick={ () => {
                   dispatch( navAction.toggleLoginSignup() );
                 } }
-              /> */}
+              />
+              <LoginSingup />
               {/* Shubh code for dropdown */ }
-              <button className="cursor-pointer outline-none bg-transparent"
+              {/* <button className="cursor-pointer outline-none bg-transparent"
                 onBlur={ () => {
                   setDropDown( false );
                 } }
@@ -43,6 +51,7 @@ const Header = () => {
                 } }
               >
                 <img src="https://bit.ly/dan-abramov" alt="User" className="h-8  rounded-full border-2 border-white" />
+
                 { dropDown ?
                   <div class="popins z-10 bg-[#F2F2F2]  rounded-xl shadow w-48 absolute top-11 right-[5%] rounded-tr-none">
                     <ul class="py-2 text-[16px] text-slate-800 font-[600] text-left" >
@@ -58,7 +67,7 @@ const Header = () => {
                     </ul>
                   </div>
                   : null }
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

@@ -8,10 +8,11 @@ import EmptyCart from "../components/cart/EmptyCart";
 import CartSkull from "../components/cart/CartSkull";
 import Modal from "../components/modal/Modal";
 import { FaTrashCan } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 const pro = [1, 2];
 const Cart = () => {
+  const navigate = useNavigate();
   const [opendel, setOpenDel] = useState(false);
-
   const [cartItems, setcartItems] = useState([1, 2]);
   return (
     <div>
@@ -142,7 +143,14 @@ const Cart = () => {
                   <span className="text-1pl">600</span>
                 </div>
                 <div className=" mt-5">
-                  <button className="btn-red ">Checkout</button>
+                  <button
+                    className="btn-red "
+                    onClick={() => {
+                      navigate("/address");
+                    }}
+                  >
+                    Checkout
+                  </button>
                 </div>
               </div>
             </div>
@@ -153,7 +161,7 @@ const Cart = () => {
       )}
       {/* <CartSkull /> */}
       <Modal open={opendel} onClose={() => setOpenDel(false)}>
-        <div className="text-center  ">
+        <div className="text-center p-8 ">
           <div className="mx-auto my-4 ">
             <div className="text-[40px] flex justify-center  text-red-600">
               <FaTrashCan />

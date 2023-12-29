@@ -6,9 +6,6 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { ImLocation } from "react-icons/im";
 import { FaPlus } from "react-icons/fa6";
 import Modal from "../components/modal/Modal";
-
-
-
 const data = [ 1, 1, 1, 1 ];
 const Address = () => {
   const [ border, setborder ] = useState( 0 );
@@ -82,7 +79,7 @@ const Address = () => {
         </div>
       </div>
       <Modal open={ openEdit } onClose={ () => setOpenEdit( false ) }>
-        <div className="text-center  ">
+        <div className="text-center  p-8">
           <div className="mx-auto my-4 ">
             {/* <div className="text-[40px] flex justify-center  text-red-600">
               <FaEdit />

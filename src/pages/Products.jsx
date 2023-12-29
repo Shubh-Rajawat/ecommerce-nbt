@@ -1,11 +1,11 @@
-import React from "react";
-import p2 from "../static/assets/p2.svg";
-import p3 from "../static/assets/p3.svg";
-import p4 from "../static/assets/p4.svg";
-import p5 from "../static/assets/about1.svg";
-import p6 from "../static/assets/p6.svg";
-import p1 from "../static/assets/p1.jpg";
+// import React from "react";
+// import p2 from "../static/assets/p2.svg";
+// import p3 from "../static/assets/p3.svg";
+// import p4 from "../static/assets/p4.svg";
+// import p6 from "../static/assets/p6.svg";
+// import p1 from "../static/assets/p1.jpg";
 import arrow from "../static/assets/arrow_r.svg";
+import p5 from "../static/assets/about1.svg";
 import { useNavigate } from "react-router-dom";
 
 const data = [
