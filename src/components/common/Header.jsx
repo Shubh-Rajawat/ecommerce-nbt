@@ -12,37 +12,37 @@ import LoginSingup from "../user/LoginSingup";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const [dropDown, setDropDown] = useState(false);
+  const [ dropDown, setDropDown ] = useState( false );
   const navigate = useNavigate();
   return (
     <>
       <header className=" relative ">
-        {/* upper header */}
+        {/* upper header */ }
         <div className="grid grid-cols-3 ss-container">
           <div className=""></div>
           <div className=" w-[42%] bg-[#D63348] h-[45px] absolute top-0 right-0 -z-10"></div>
           <div className="h-[45px] flex justify-between col-span-3 md:col-span-2 bg-[#D63348] pl-3 md:pl-10 py-2 rounded-bl-[45px] text-white">
             <div className="font-semibold text-xs md:text-md  flex items-center gap-2">
-              {" "}
+              { " " }
               <FaLocationDot className="text-xl" /> 5331 Rexford Court
               ,Montgomery AL 36116
             </div>
             <div className=" text-2xl md:text-3xl flex gap-2 font-semibold text-end relative">
               <CiShoppingCart
                 className="cursor-pointer "
-                onClick={() => {
-                  navigate("/cart");
-                }}
+                onClick={ () => {
+                  navigate( "/cart" );
+                } }
               />
-              <CiUser
+              {/* <CiUser
                 className="cursor-pointer "
-                onClick={() => {
-                  dispatch(navAction.toggleLoginSignup());
-                }}
+                onClick={ () => {
+                  dispatch( navAction.toggleLoginSignup() );
+                } }
               />
-              <LoginSingup />
-              {/* Shubh code for dropdown */}
-              {/* <button className="cursor-pointer outline-none bg-transparent"
+              <LoginSingup /> */}
+              {/* Shubh code for dropdown */ }
+              <button className="cursor-pointer outline-none bg-transparent"
                 onBlur={ () => {
                   setDropDown( false );
                 } }
@@ -67,25 +67,25 @@ const Header = () => {
                     </ul>
                   </div>
                   : null }
-              </button> */}
+              </button>
             </div>
           </div>
         </div>
-        {/* lower header */}
-        {/* <div className="flex justify-between items-center mx-10 md:mx-20 py-6"> */}
+        {/* lower header */ }
+        {/* <div className="flex justify-between items-center mx-10 md:mx-20 py-6"> */ }
         <div className="ss-container flex justify-between items-center py-6">
           <div className="w-48 md:w-64">
             <NavLink to="/">
-              {" "}
-              <img src={logo} alt="not-found" />
+              { " " }
+              <img src={ logo } alt="not-found" />
             </NavLink>
           </div>
           <div className="">
             <RiMenu3Fill
               className="text-4xl font-extrabold cursor-pointer"
-              onClick={() => {
-                dispatch(navAction.toggleNav());
-              }}
+              onClick={ () => {
+                dispatch( navAction.toggleNav() );
+              } }
             />
           </div>
         </div>
