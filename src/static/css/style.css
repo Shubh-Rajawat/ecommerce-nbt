@@ -9,7 +9,10 @@
 .ramto {
   font-family: "Rammetto One", sans-serif;
 }
-
+.inter {
+  font-family: "Inter", sans-serif;
+  line-height: 24.2px;
+}
 .shadow-1:hover {
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.2);
 }
@@ -134,4 +137,34 @@
 }
 .home-about-swiper .swiper-button-next:after {
   font-size: 20px;
+}
+.chakra-tabs__tab-panels {
+  border-color: none !important;
+}
+
+.chakra-tabs__tab-panels {
+  border-color: none !important;
+}
+.css-52dxnr[aria-selected="true"] {
+  border-color: #d63348 !important;
+  --tabs-color: #d63348 !important;
+  font-family: "Rammetto One", sans-serif !important;
+  font-size: 16px !important;
+  border-bottom: 4px solid !important;
+  border-radius: 4px !important;
+}
+.css-52dxnr {
+  font-family: "Rammetto One", sans-serif !important;
+}
+.css-52dxnr[aria-selected="false"] {
+  --tabs-color: #09405e !important;
+}
+.css-1xhq01z {
+  border-color: transparent !important;
+}
+.order-history-ongoing th,
+tr,
+td,
+thead {
+  font-family: "Inter", sans-serif;
 }
