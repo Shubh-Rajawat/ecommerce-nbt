@@ -4,7 +4,7 @@ import { LuEye } from "react-icons/lu";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="bg-[#F2F2F2] p-8">
+    <div className="bg-[#F2F2F2] md:px-16 p-8 ">
       <div className="">
         <div className="flex flex-col items-start">
           <label htmlFor="email" className="text-[#09405E] ramto text-[14px]">
@@ -27,7 +27,7 @@ const Login = () => {
             Password
           </label>
           <input
-            type="password"
+            type={showPassword ? `text` : "password"}
             name="password"
             id="password"
             placeholder="Enter password"
@@ -35,9 +35,36 @@ const Login = () => {
             className=" bg-white ps-3 text-[16px] w-full focus-visible:outline-none text-[#000000] rounded-[20px] h-[50px] "
           />
           <div className=" text-red-600 absolute right-[10px] bottom-[10px]">
-            {/* <LuEye /> */}
-            <LuEyeOff />
+            {showPassword ? (
+              <LuEyeOff
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              />
+            ) : (
+              <LuEye
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              />
+            )}
           </div>
+        </div>
+        <div className="">
+          <span className="text-end text-[#D63348] text-[14px] cursor-pointer">
+            Forgot password?
+          </span>
+        </div>
+        <div className="flex items-center justify-center my-4">
+          <button className="ramto bg-[#D63348] text-white rounded-3xl py-2 px-8 text-sm md:text-lg tracking-widest">
+            Log in
+          </button>
+        </div>
+        <div className="flex justify-center ">
+          <p className="text-[#09405E] text-[16px]">
+            You don't have an account yet?
+            <span className="text-[#D63348] "> Sign Up</span>
+          </p>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { navAction } from "../../redux/slices/toggleNavSlice";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import HorizontalNav from "./HorizontalNav";
 import { ImExit } from "react-icons/im";
+import LoginSingup from "../user/LoginSingup";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -27,12 +28,19 @@ const Header = () => {
               ,Montgomery AL 36116
             </div>
             <div className=" text-2xl md:text-3xl flex gap-2 font-semibold text-end relative">
-              <CiShoppingCart />
+              <CiShoppingCart
+                className="cursor-pointer "
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              />
               <CiUser
+                className="cursor-pointer "
                 onClick={() => {
                   dispatch(navAction.toggleLoginSignup());
                 }}
               />
+              <LoginSingup />
               {/* Shubh code for dropdown */}
               {/* <button className="cursor-pointer outline-none bg-transparent"
                 onBlur={ () => {

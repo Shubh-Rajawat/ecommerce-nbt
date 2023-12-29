@@ -110,9 +110,9 @@ const HomeComp = () => {
             loop={true}
             className="mySwiper"
           >
-            {sliderData.map((res) => {
+            {sliderData.map((res, ind) => {
               return (
-                <SwiperSlide className=" ">
+                <SwiperSlide className=" " key={ind}>
                   <section className="flex bg-[#E9AF22] text-start py-6 lg:py-12  px-11 lg:px-16">
                     <div className="flex flex-col place-content-center">
                       <h1 className="text-3xl md:text-5xl xl:text-6xl 2xl:text-8xl ramto text-white">

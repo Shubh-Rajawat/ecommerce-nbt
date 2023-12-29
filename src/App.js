@@ -13,20 +13,22 @@ import Notification from './pages/Notification';
 import Home from "./pages/Home";
 import Cart from './pages/Cart';
 import Address from './pages/Address';
+import OrderLocation from './pages/OrderLocation';
 function App() {
   return (
     <>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/notification" element={<Notification />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/info" element={<SingleProduct />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/address" element={<Address />} />
+          <Route path="/notification" element={ <Notification /> } />
+          <Route path="/" element={ <Home /> } />
+          <Route path="/contact" element={ <Contact /> } />
+          <Route path="/about" element={ <About /> } />
+          <Route path="/products" element={ <Products /> } />
+          <Route path="/info" element={ <SingleProduct /> } />
+          <Route path="/cart" element={ <Cart /> } />
+          <Route path="/address" element={ <Address /> } />
+          <Route path="/order-location" element={ <OrderLocation /> } />
         </Routes>
         <Footer />
       </BrowserRouter>
