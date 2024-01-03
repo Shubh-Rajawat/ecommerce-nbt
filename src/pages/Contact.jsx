@@ -31,7 +31,7 @@ const Contact = () => {
                   htmlFor="email"
                   className="ss-contact-label md:text-base  text-sm ramto"
                 >
-                  Email address{" "}
+                  Email address
                 </label>
 
                 <input

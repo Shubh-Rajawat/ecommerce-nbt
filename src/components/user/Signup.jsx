@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { LuEyeOff } from "react-icons/lu";
 import { LuEye } from "react-icons/lu";
+import { useDispatch } from "react-redux";
+import { navAction } from "../../redux/slices/toggleNavSlice";
 const Signup = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -64,11 +67,11 @@ const Signup = () => {
             )}
           </div>
         </div>
-        <div className="">
+        {/* <div className="">
           <span className="text-end text-[#D63348] text-[14px] cursor-pointer">
             Forgot password?
           </span>
-        </div>
+        </div> */}
         <div className="flex items-center justify-center my-4">
           <button className="ramto bg-[#D63348] text-white rounded-3xl py-2 px-8 text-sm md:text-lg">
             Sign-Up
@@ -77,7 +80,15 @@ const Signup = () => {
         <div className="flex justify-center ">
           <p className="text-[#09405E] text-[16px]">
             Already have an account?
-            <span className="text-[#D63348]"> Login</span>
+            <span
+              className="text-[#D63348] cursor-pointer"
+              onClick={() => {
+                dispatch(navAction.setShowUserTab("login"));
+              }}
+            >
+              {" "}
+              Login
+            </span>
           </p>
         </div>
       </div>

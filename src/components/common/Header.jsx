@@ -38,15 +38,16 @@ const Header = () => {
                   99
                 </span>
               </div>
-              {/* <CiUser
+              <CiUser
                 className="cursor-pointer "
-                onClick={ () => {
-                  dispatch( navAction.toggleLoginSignup() );
-                } }
+                onClick={() => {
+                  dispatch(navAction.toggleLoginSignup());
+                  dispatch(navAction.setShowUserTab("login"));
+                }}
               />
-              <LoginSingup /> */}
+              <LoginSingup />
               {/* Shubh code for dropdown */}
-              <button
+              {/* <button
                 className="cursor-pointer outline-none bg-transparent"
                 onBlur={() => {
                   setDropDown(false);
@@ -83,7 +84,7 @@ const Header = () => {
                     </ul>
                   </div>
                 ) : null}
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

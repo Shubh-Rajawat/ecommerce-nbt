@@ -67,7 +67,7 @@ const Profile = () => {
                   examplejohn@gmail.com
                 </div>
                 <div className=" flex items-center gap-4 my-6 popins text-[16px] md:text-[18px]">
-                  <div className="bg-[#D63348] text-white rounded-full">
+                  <div className="bg-[#D63348] text-white rounded-full  ">
                     <FaPhoneAlt className="  m-2" size={22} />
                   </div>
                   <span className="text-[#777777]">+234 9011039271</span>

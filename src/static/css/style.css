@@ -168,3 +168,10 @@ td,
 thead {
   font-family: "Inter", sans-serif;
 }
+.br-red {
+  border-color: #cc132c !important;
+}
+.br-red:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}

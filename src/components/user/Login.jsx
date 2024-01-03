@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { LuEyeOff } from "react-icons/lu";
 import { LuEye } from "react-icons/lu";
+import { navAction } from "../../redux/slices/toggleNavSlice";
+import { useDispatch } from "react-redux";
 const Login = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="bg-[#F2F2F2] md:px-16 p-8 ">
@@ -51,19 +54,37 @@ const Login = () => {
           </div>
         </div>
         <div className="">
-          <span className="text-end text-[#D63348] text-[14px] cursor-pointer">
+          <span
+            className="text-end text-[#D63348] text-[14px] cursor-pointer"
+            onClick={() => {
+              dispatch(navAction.setShowForgotPasswordTab());
+            }}
+          >
             Forgot password?
           </span>
         </div>
         <div className="flex items-center justify-center my-4">
-          <button className="ramto bg-[#D63348] text-white rounded-3xl py-2 px-8 text-sm md:text-lg tracking-widest">
+          <button
+            className="ramto bg-[#D63348] text-white rounded-3xl py-2 px-8 text-sm md:text-lg tracking-widest"
+            onClick={() => {
+              dispatch(navAction.setShowOtpTab());
+            }}
+          >
             Log in
           </button>
         </div>
         <div className="flex justify-center ">
           <p className="text-[#09405E] text-[16px]">
             You don't have an account yet?
-            <span className="text-[#D63348] "> Sign Up</span>
+            <span
+              className="text-[#D63348] cursor-pointer"
+              onClick={() => {
+                dispatch(navAction.setShowUserTab("signup"));
+              }}
+            >
+              {" "}
+              Sign Up
+            </span>
           </p>
         </div>
       </div>

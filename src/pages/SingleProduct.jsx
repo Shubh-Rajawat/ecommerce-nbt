@@ -5,7 +5,7 @@ import { IoMdHeart } from "react-icons/io";
 const SingleProduct = () => {
   const [isLiked, setIsLiked] = useState(false);
   return (
-    <div className=" space1 select-none">
+    <section className=" space1 select-none">
       <div className="ss-container ">
         <div className="flex gap-10 md:flex-row flex-col">
           <div className=" relative overflow-hidden rounded-[50px] flex-1">
@@ -96,7 +96,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
