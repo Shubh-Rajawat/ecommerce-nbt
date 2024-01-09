@@ -6,18 +6,23 @@ import Login from "./Login";
 import Signup from "./Signup";
 import OtpVerify from "./OtpVerify";
 import ForgotPassword from "./ForgotPassword";
+import { userActions } from "../../redux/actions/userAuth";
 
 const LoginSingup = () => {
   const dispatch = useDispatch();
   const { showLoginSignup, userComp, otpTab, forgotPasswordTab } = useSelector(
     (state) => state.nav
   );
-  console.log(otpTab, userComp);
+  // console.log(otpTab, userComp);
+  const emptyFields = () => {
+    dispatch(userActions.setFieldsEmpty(false));
+  };
   return (
     <div>
       <Modal
         open={showLoginSignup}
         onClose={() => {
+          dispatch(userActions.setFieldsEmpty(true));
           dispatch(navAction.toggleLoginSignup());
         }}
       >
@@ -43,6 +48,7 @@ const LoginSingup = () => {
                     }`}
                     onClick={() => {
                       dispatch(navAction.setShowUserTab("login"));
+                      emptyFields();
                     }}
                   >
                     Login
@@ -55,6 +61,7 @@ const LoginSingup = () => {
                     }`}
                     onClick={() => {
                       dispatch(navAction.setShowUserTab("signup"));
+                      emptyFields();
                     }}
                   >
                     Sign-Up

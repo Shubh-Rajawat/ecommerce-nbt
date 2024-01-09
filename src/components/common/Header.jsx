@@ -9,6 +9,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import HorizontalNav from "./HorizontalNav";
 import { ImExit } from "react-icons/im";
 import LoginSingup from "../user/LoginSingup";
+import { userActions } from "../../redux/actions/userAuth";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,8 @@ const Header = () => {
                 className="cursor-pointer "
                 onClick={() => {
                   dispatch(navAction.toggleLoginSignup());
+                  dispatch(userActions.setFieldsEmpty(false));
+
                   dispatch(navAction.setShowUserTab("login"));
                 }}
               />

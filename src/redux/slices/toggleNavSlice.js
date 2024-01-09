@@ -10,7 +10,6 @@ const navSlice = createSlice({
         },
         toggleLoginSignup: (state) => {
             state.showLoginSignup = !state.showLoginSignup
-
         },
         setShowUserTab: (state, action) => {
             state.otpTab = false
@@ -28,11 +27,8 @@ const navSlice = createSlice({
             state.userComp = false
             state.forgotPasswordTab = !state.forgotPasswordTab
         },
-
-
     }
 })
-
 export const navAction = navSlice.actions
 const navReducer = navSlice.reducer
 export default navReducer
