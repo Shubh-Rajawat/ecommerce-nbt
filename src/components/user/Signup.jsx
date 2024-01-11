@@ -131,7 +131,7 @@ const Signup = () => {
                 setUser({ ...user, password: e.target.value });
               }}
               autoComplete="off"
-              className=" bg-white ps-3 text-[16px] w-full focus-visible:outline-none text-[#000000] rounded-[20px] h-[50px] "
+              className=" bg-white ps-3 text-[16px] w-full focus-visible:outline-none text-[#000000] rounded-[20px] h-[50px]"
             />
             <div className=" text-red-600 absolute right-[10px] bottom-[10px]">
               {showPassword ? (

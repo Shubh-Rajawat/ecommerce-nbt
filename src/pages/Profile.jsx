@@ -10,24 +10,27 @@ import SmallCard from "../components/profile/SmallCard";
 
 const data = [
   {
+    id: 1,
     name: "Orders",
     icon: <FaClipboardList className="text-[#D63348] text-3xl" />,
     path: "",
   },
+  // {
+  //   name: "Language",
+  //   icon: <MdOutlineLanguage className="text-[#D63348] text-3xl" />,
+  //   path: "",
+  // },
   {
-    name: "Language",
-    icon: <MdOutlineLanguage className="text-[#D63348] text-3xl" />,
-    path: "",
-  },
-  {
+    id: 2,
     name: "Help & Support",
     icon: <TbHelpSquareRoundedFilled className="text-[#D63348] text-3xl" />,
-    path: "",
+    path: "/profile/help-and-support",
   },
   {
+    id: 3,
     name: "Settings",
     icon: <IoMdSettings className="text-[#D63348] text-3xl" />,
-    path: "",
+    path: "/profile/settings",
   },
 ];
 const Profile = () => {

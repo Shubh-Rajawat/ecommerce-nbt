@@ -7,6 +7,8 @@
 import arrow from "../static/assets/arrow_r.svg";
 import p5 from "../static/assets/about1.svg";
 import { useNavigate } from "react-router-dom";
+import Banner from "../components/common/Banner";
+import b1 from "../static/assets/b1.png";
 
 const data = [
   { name: "Luger Burger", image: p5 },
@@ -16,38 +18,45 @@ const data = [
   { name: "Luger Burger", image: p5 },
   { name: "Luger Burger", image: p5 },
 ];
+const bannerData = {
+  title: "Menu",
+  img: b1,
+};
 const Products = () => {
   const navigate = useNavigate();
   return (
-    <div className="space1">
-      <div className="ss-container ">
-        <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 ">
-          {data.map((item, index) => {
-            return (
-              <div
-                className=" rounded-2xl p-4 shadow-1  duration-300 cursor-pointer"
-                key={index}
-                onClick={() => {
-                  navigate("/info");
-                }}
-              >
-                <div className=" rounded-2xl  overflow-hidden">
-                  <img src={item?.image} alt="" />
-                </div>
-                <div className="flex mt-3 justify-between gap-3">
-                  <div className=" overflow-hidden">
-                    <h2 className="ss-head-one truncate">{item.name}</h2>
+    <>
+      <Banner data={bannerData} />
+      <div className="space1">
+        <div className="ss-container ">
+          <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-5 ">
+            {data.map((item, index) => {
+              return (
+                <div
+                  className=" rounded-2xl p-4 shadow-1  duration-300 cursor-pointer"
+                  key={index}
+                  onClick={() => {
+                    navigate("/info");
+                  }}
+                >
+                  <div className=" rounded-2xl  overflow-hidden">
+                    <img src={item?.image} alt="" />
                   </div>
-                  <div className=" w-10  flex align-middle">
-                    <img src={arrow} alt="arrow" className="w-2" />
+                  <div className="flex mt-3 justify-between gap-3">
+                    <div className=" overflow-hidden">
+                      <h2 className="ss-head-one truncate">{item.name}</h2>
+                    </div>
+                    <div className=" w-10  flex align-middle">
+                      <img src={arrow} alt="arrow" className="w-2" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
