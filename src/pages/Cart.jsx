@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import p1 from "../static/assets/c1.svg";
 import coin from "../static/assets/conin.svg";
 import { FaPlus } from "react-icons/fa";
@@ -9,19 +9,32 @@ import CartSkull from "../components/cart/CartSkull";
 import Modal from "../components/modal/Modal";
 import { FaTrashCan } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "../redux/apiData/cart";
 const pro = [1, 2];
 const Cart = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [opendel, setOpenDel] = useState(false);
-  const [cartItems, setcartItems] = useState([1, 2]);
+  const [itemId, setitemId] = useState();
+  const { cartData } = useSelector((state) => state.cart);
+  console.log("cartdata", cartData);
+  useEffect(() => {
+    let data = { limit: 6, page: 1 };
+    dispatch(getCart(data));
+  }, []);
+
+  const deleteItem = () => {
+    // dispatch(deleteItem({ id: itemId }));
+  };
   return (
     <div>
-      {cartItems?.length ? (
+      {cartData?.data?.length ? (
         <div className="ss-container  space1">
           <div className="grid lg:grid-cols-7 md:grid-cols-5 lg:gap-8 gap-4">
             <div className="col-span-7  md:col-span-3 lg:col-span-4 ">
-              {pro &&
-                pro?.map((item, ind) => {
+              {cartData?.data.length > 0 &&
+                cartData?.data?.map((item, ind) => {
                   return (
                     <div
                       key={ind}
@@ -63,7 +76,10 @@ const Cart = () => {
                           color="white"
                           size={18}
                           className="cursor-pointer"
-                          onClick={() => setOpenDel(true)}
+                          onClick={() => {
+                            setitemId(item?._id);
+                            setOpenDel(true);
+                          }}
                         />
                       </div>
                     </div>
@@ -175,8 +191,10 @@ const Cart = () => {
             </p>
           </div>
           <div className="flex gap-4">
-            <button className="btn-red">Cancel</button>
-            <button onClick={() => setOpenDel(false)} className="btn-blue">
+            <button onClick={() => setOpenDel(false)} className="btn-red">
+              Cancel
+            </button>
+            <button onClick={deleteItem} className="btn-blue">
               Delete
             </button>
           </div>

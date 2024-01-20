@@ -5,12 +5,21 @@ import { navAction } from "../../redux/slices/toggleNavSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../redux/actions/userAuth";
 import { userLogin } from "../../redux/apiData/user";
+import Cookies from "js-cookie";
 const Login = () => {
   const dispatch = useDispatch();
   const { empty, isError, isLoading, userData } = useSelector(
     (state) => state.user
   );
-  console.log("empty", empty);
+  console.log("User", userData);
+  useEffect(() => {
+    if (userData?.status === true) {
+      Cookies.set("token", userData?.token);
+      dispatch(userActions.setFieldsEmpty(true));
+      dispatch(navAction.toggleLoginSignup());
+    }
+  }, [userData]);
+  // console.log("empty", empty);
   const [inputError, setinputError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [user, setuser] = useState({
@@ -20,7 +29,6 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setinputError(false);
-    console.log("User", user);
     if (!user.password || !user.email) {
       setinputError("All fields required");
     } else {

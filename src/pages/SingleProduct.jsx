@@ -1,15 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import pr from "../static/assets/pr1.svg";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { singleProductDetail } from "../redux/apiData/products";
+import { addToCart } from "../redux/apiData/cart";
 const SingleProduct = () => {
+  const { id } = useParams();
+  const { singleProductData } = useSelector((state) => state.product);
+  console.log("singleProductData", singleProductData);
+
   const [isLiked, setIsLiked] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(singleProductDetail({ id: id }));
+  }, []);
+
+  const handleAddToCart = async () => {
+    let data = {
+      ingrdiants: "",
+      quantity: 1,
+      menu: "",
+      product_id: singleProductData?._id,
+    };
+
+    dispatch(addToCart(data));
+  };
   return (
     <section className=" space1 select-none">
       <div className="ss-container ">
         <div className="flex gap-10 md:flex-row flex-col">
           <div className=" relative overflow-hidden rounded-[50px] flex-1">
-            <img src={pr} alt="" className=" object-cover h-full w-full " />
+            <img
+              src={singleProductData?.image}
+              alt=""
+              className=" object-cover h-full w-full "
+            />
             <div className=" absolute rounded-full bg-white w-[50px] h-[50px] top-8 right-8 flex items-center justify-center">
               {isLiked ? (
                 <IoIosHeartEmpty
@@ -32,7 +60,7 @@ const SingleProduct = () => {
           </div>
           <div className=" flex-1">
             <div className="">
-              <h2 className="text-2pl">Crispy Chicken</h2>
+              <h2 className="text-2pl">{singleProductData?.name}</h2>
               <p className="my-3">Pollo Fritto 100g, insalata, mayo</p>
               <div className="">
                 <div className="flex justify-between">
@@ -91,7 +119,9 @@ const SingleProduct = () => {
                   <span className="text-1pl">200</span>
                 </div>
               </div>
-              <button className="btn-red mt-5">Add To Cart</button>
+              <button className="btn-red mt-5" onClick={handleAddToCart}>
+                Add To Cart
+              </button>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ const CartSkull = () => {
             <div className="bg-[#d1d0d0]  flex gap-6 rounded-2xl p-8 relative overflow-hidden mb-4">
               <div className="flex items-center justify-center w-full h-48 bg-gray-300  sm:w-96  rounded-xl">
                 <svg
-                  class="w-10 h-10 text-gray-200 "
+                  className="w-10 h-10 text-gray-200 "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"

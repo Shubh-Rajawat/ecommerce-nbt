@@ -1,18 +1,28 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiShoppingCart, CiUser } from "react-icons/ci";
 import { FaLocationDot, FaUser } from "react-icons/fa6";
 import { RiMenu3Fill } from "react-icons/ri";
 import logo from "../../static/assets/logo.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { navAction } from "../../redux/slices/toggleNavSlice";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import HorizontalNav from "./HorizontalNav";
 import { ImExit } from "react-icons/im";
 import LoginSingup from "../user/LoginSingup";
 import { userActions } from "../../redux/actions/userAuth";
+import Cookies from "js-cookie";
 
 const Header = () => {
+  const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [token, setToken] = useState(false);
+  let tokn = Cookies.get("token");
+  useEffect(() => {
+    if (tokn) {
+      setToken(true);
+    }
+  }, [tokn, token, userData]);
+
   const [dropDown, setDropDown] = useState(false);
   const navigate = useNavigate();
   return (
@@ -39,55 +49,66 @@ const Header = () => {
                   99
                 </span>
               </div>
-              <CiUser
-                className="cursor-pointer "
-                onClick={() => {
-                  dispatch(navAction.toggleLoginSignup());
-                  dispatch(userActions.setFieldsEmpty(false));
+              {!token && (
+                <CiUser
+                  className="cursor-pointer "
+                  onClick={() => {
+                    dispatch(navAction.toggleLoginSignup());
+                    dispatch(userActions.setFieldsEmpty(false));
 
-                  dispatch(navAction.setShowUserTab("login"));
-                }}
-              />
+                    dispatch(navAction.setShowUserTab("login"));
+                  }}
+                />
+              )}
               <LoginSingup />
               {/* Shubh code for dropdown */}
-              {/* <button
-                className="cursor-pointer outline-none bg-transparent"
-                onBlur={() => {
-                  setDropDown(false);
-                }}
-                onClick={() => {
-                  setDropDown(!dropDown);
-                }}
-              >
-                <img
-                  src="https://bit.ly/dan-abramov"
-                  alt="User"
-                  className="h-8  rounded-full border-2 border-white"
-                />
+              {token && (
+                <button
+                  className="cursor-pointer outline-none bg-transparent"
+                  onBlur={() => {
+                    setDropDown(false);
+                  }}
+                  onClick={() => {
+                    setDropDown(!dropDown);
+                  }}
+                >
+                  <img
+                    src="https://bit.ly/dan-abramov"
+                    alt="User"
+                    className="h-8  rounded-full border-2 border-white"
+                  />
 
-                {dropDown ? (
-                  <div class="popins z-10 bg-[#F2F2F2]  rounded-xl shadow w-48 absolute top-11 right-[5%] rounded-tr-none">
-                    <ul class="py-2 text-[16px] text-slate-800 font-[600] text-left">
-                      <li>
-                        <span
-                          onClick={() => {
-                            navigate("/profile");
-                          }}
-                          class=" px-4  hover:bg-gray-300 flex items-baseline gap-2"
-                        >
-                          <FaUser className="text-[#D63348] text-sm" />
-                          View Profile
-                        </span>
-                      </li>
-                      <li>
-                        <span class=" px-4  hover:bg-gray-300 flex items-center gap-2">
-                          <ImExit className="text-[#D63348] text-sm" /> Logout
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                ) : null}
-              </button> */}
+                  {dropDown ? (
+                    <div class="popins z-10 bg-[#F2F2F2]  rounded-xl shadow w-48 absolute top-11 right-[5%] rounded-tr-none">
+                      <ul class="py-2 text-[16px] text-slate-800 font-[600] text-left">
+                        <li>
+                          <span
+                            onClick={() => {
+                              navigate("/profile");
+                            }}
+                            class=" px-4  hover:bg-gray-300 flex items-baseline gap-2"
+                          >
+                            <FaUser className="text-[#D63348] text-sm" />
+                            View Profile
+                          </span>
+                        </li>
+                        <li>
+                          <span
+                            class=" px-4  hover:bg-gray-300 flex items-center gap-2 "
+                            onClick={() => {
+                              Cookies.remove("token");
+                              setToken(false);
+                              navigate("/");
+                            }}
+                          >
+                            <ImExit className="text-[#D63348] text-sm" /> Logout
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : null}
+                </button>
+              )}
             </div>
           </div>
         </div>

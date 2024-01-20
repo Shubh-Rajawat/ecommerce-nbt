@@ -66,14 +66,14 @@ const HelpAndSupport = () => {
           <div className="">
             <h2 className="ramto text-[36px] mb-4">FAQ</h2>
           </div>
-          <ul class="    grid md:grid-cols-2 grid-cols-1 gap-4">
+          <ul className="    grid md:grid-cols-2 grid-cols-1 gap-4">
             {faq.map((item, ind) => {
               return (
-                <li>
-                  <details class="group bg-white rounded-xl">
-                    <summary class="flex items-center gap-3 px-4 py-3 font-medium marker:content-none hover:cursor-pointer duration-500 transition">
+                <li key={ind}>
+                  <details className="group bg-white rounded-xl">
+                    <summary className="flex items-center gap-3 px-4 py-3 font-medium marker:content-none hover:cursor-pointer duration-500 transition">
                       <svg
-                        class="w-5 h-5 text-red-600 transition group-open:rotate-90 duration-500 font-bold"
+                        className="w-5 h-5 text-red-600 transition group-open:rotate-90 duration-500 font-bold"
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
                         height="16"
@@ -81,14 +81,14 @@ const HelpAndSupport = () => {
                         viewBox="0 0 16 16"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
                         ></path>
                       </svg>
                       <span>Why Lorem lpsum is dummy?</span>
                     </summary>
 
-                    <article class="px-4 pb-4 ">
+                    <article className="px-4 pb-4 ">
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Sed et ipsum sapien. Vestibulum molestie porttitor augue

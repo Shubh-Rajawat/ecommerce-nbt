@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { apiEndPoints } from "../endPoints";
+import Cookies from "js-cookie";
 
 export const userSignup = createAsyncThunk("signup", async (args, { rejectWithValue }) => {
     try {
@@ -13,14 +14,17 @@ export const userSignup = createAsyncThunk("signup", async (args, { rejectWithVa
 })
 
 export const userLogin = createAsyncThunk("login", async (args, { rejectWithValue }) => {
-    // console.log("args", args)
     try {
         const response = await axios.post(`${apiEndPoints.LOGIN}`, args)
+        // console.log("args", response.data.token)
+        Cookies.set('token', response.data.token)
+
         return response.data
     } catch (error) {
         return rejectWithValue(error.response.data)
     }
 })
+
 export const sendOtp = createAsyncThunk("send otp", async (args, { rejectWithValue }) => {
     // console.log("args", args)
     try {
@@ -30,6 +34,7 @@ export const sendOtp = createAsyncThunk("send otp", async (args, { rejectWithVal
         return rejectWithValue(error.response.data)
     }
 })
+
 export const verifyOtp = createAsyncThunk("verify otp", async (args, { rejectWithValue }) => {
     // console.log("args", args)
     try {
@@ -39,3 +44,4 @@ export const verifyOtp = createAsyncThunk("verify otp", async (args, { rejectWit
         return rejectWithValue(error.response.data)
     }
 })
+
