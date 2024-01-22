@@ -33,6 +33,7 @@ const cartSlice = createSlice({
             state.isLoading = false;
         })
         builder.addCase(getCart.pending, (state, action) => {
+            state.cartData = null;
 
             state.isLoading = true;
             state.isError = null;
