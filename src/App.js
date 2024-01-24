@@ -16,7 +16,7 @@ import OrderHistory from "./pages/OrderHistory";
 import Profile from './pages/Profile';
 import ProfileSettings from "./pages/ProfileSettings";
 import HelpAndSupport from "./pages/HelpAndSupport";
-import EdtitProfile from "./pages/EdtitProfile";
+import EditProfile from "./pages/EditProfile";
 import RewardPointPage from "./pages/RewardPointPage";
 function App() {
   return (
@@ -24,21 +24,21 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/notification" element={<Notification />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/info/:id/:slug" element={<SingleProduct />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/address" element={<Address />} />
-          <Route path="/order-location" element={<OrderLocation />} />
-          <Route path="/orders" element={<OrderHistory />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/edit-profile" element={<EdtitProfile />} />
-          <Route path="/profile/settings" element={<ProfileSettings />} />
-          <Route path="/profile/help-and-support" element={<HelpAndSupport />} />
-          <Route path="reward-points" element={<RewardPointPage />} />
+          <Route path="/notification" element={ <Notification /> } />
+          <Route path="/" element={ <Home /> } />
+          <Route path="/contact" element={ <Contact /> } />
+          <Route path="/about" element={ <About /> } />
+          <Route path="/products" element={ <Products /> } />
+          <Route path="/info/:id/:slug" element={ <SingleProduct /> } />
+          <Route path="/cart" element={ <Cart /> } />
+          <Route path="/address" element={ <Address /> } />
+          <Route path="/order-location" element={ <OrderLocation /> } />
+          <Route path="/orders" element={ <OrderHistory /> } />
+          <Route path="/profile" element={ <Profile /> } />
+          <Route path="/edit-profile" element={ <EditProfile /> } />
+          <Route path="/profile/settings" element={ <ProfileSettings /> } />
+          <Route path="/profile/help-and-support" element={ <HelpAndSupport /> } />
+          <Route path="reward-points" element={ <RewardPointPage /> } />
         </Routes>
         <Footer />
       </BrowserRouter>
