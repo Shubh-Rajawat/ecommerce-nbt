@@ -17,6 +17,7 @@ import Profile from './pages/Profile';
 import ProfileSettings from "./pages/ProfileSettings";
 import HelpAndSupport from "./pages/HelpAndSupport";
 import EdtitProfile from "./pages/EdtitProfile";
+import RewardPointPage from "./pages/RewardPointPage";
 function App() {
   return (
     <>
@@ -37,6 +38,7 @@ function App() {
           <Route path="/edit-profile" element={<EdtitProfile />} />
           <Route path="/profile/settings" element={<ProfileSettings />} />
           <Route path="/profile/help-and-support" element={<HelpAndSupport />} />
+          <Route path="reward-points" element={<RewardPointPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
