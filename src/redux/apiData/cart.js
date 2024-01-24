@@ -29,6 +29,8 @@ export const deleteCartItem = createAsyncThunk("delete cart item", async (args, 
     try {
         let token = Cookies.get('token')
         const response = await axios.post(`${apiEndPoints.DELETE_ITEM_FROM_CART}?token=${token}`, args)
+
+        // console.log(" delete resp", response)
         return response.data
     } catch (error) {
         return rejectWithValue(error.response.data)

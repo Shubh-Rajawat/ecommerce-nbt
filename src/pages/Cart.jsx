@@ -11,25 +11,45 @@ import { FaTrashCan } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItem, getCart } from "../redux/apiData/cart";
+import { useToast } from "@chakra-ui/react";
+import { cartActions } from "../redux/actions/cart";
 const pro = [1, 2];
 const Cart = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
   const navigate = useNavigate();
   const [opendel, setOpenDel] = useState(false);
   const [itemId, setitemId] = useState();
-  const { cartData, isLoading } = useSelector((state) => state.cart);
-  console.log("cartdata", cartData);
+  // const [updateqty,setupdateqty]=useState()
+  const { cartData, isLoading, deleteResp } = useSelector(
+    (state) => state.cart
+  );
+  console.log("deleteResp", deleteResp);
   let data = { limit: 6, page: 1 };
   useEffect(() => {
-    dispatch(getCart(data));
-  }, []);
+    dispatch(getCart(data, false));
+    // delete toast
+    if (deleteResp?.status === true || deleteResp?.status === false) {
+      toast({
+        description:
+          deleteResp?.status === true
+            ? `Item Removed Successfully`
+            : `Error Occured!`,
+        status: deleteResp?.status === true ? "success" : "error",
+        position: "top",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    dispatch(cartActions.setDeleteResp());
+  }, [deleteResp]);
 
-  const deleteItem = async () => {
-    console.log(itemId);
-    await dispatch(deleteCartItem({ id: itemId }));
+  const deleteItem = () => {
+    // setisSkip(true);
+    dispatch(deleteCartItem({ id: itemId }));
     setOpenDel(false);
-    await dispatch(getCart(data));
   };
+
   return (
     <div>
       {isLoading ? (
@@ -47,19 +67,27 @@ const Cart = () => {
                           key={ind}
                           className="bg-[#F2F2F2]  flex gap-6 rounded-2xl 2xl:p-8 lg:p-6 p-4 relative overflow-hidden mb-4 xl:flex-row flex-col"
                         >
-                          <div className=" overflow-hidden flex-1 mx-auto">
-                            <img src={p1} alt="" className="rounded-2xl" />
+                          <div className=" overflow-hidden flex-1 mx-auto max-h-60 grid place-content-center rounded-2xl">
+                            <img
+                              src={item?.product_id?.image}
+                              alt=""
+                              className="rounded-2xl"
+                            />
                           </div>
                           <div className=" flex-1 ">
-                            <h1 className="text-2cl">Crispy Chicken</h1>
-                            <p className="text-5pl lg:my-5 md:my-3 my-2">
-                              Pollo Fritto 100g, insalata, mayo
+                            <h1 className="text-2cl">
+                              {item?.product_id?.name}
+                            </h1>
+                            <p className="text-5pl   my-2">
+                              {item?.product_id?.description}
                             </p>
                             <div className="flex justify-between">
-                              <h3 className="text-3pl">Menu Large</h3>
-                              <h4 className="text-3cl  red">1090</h4>
+                              <h3 className="text-3pl">Large</h3>
+                              <h4 className="text-3cl  red">
+                                {item?.product_id?.price}
+                              </h4>
                             </div>
-                            <h3 className="text-3cl red my-2">1090</h3>
+                            {/* <h3 className="text-3cl red my-2">1090</h3> */}
                             <div className=" mt-5   flex">
                               <div className="bg-[#09405E] rounded-[50px] flex py-1">
                                 <button className=" text-2xl px-3 text-white">
@@ -68,11 +96,14 @@ const Cart = () => {
                                 <input
                                   type="text"
                                   name=""
-                                  value={5}
+                                  value={item?.quantity}
                                   id=""
                                   className=" w-5 text-2xl font-semibold   text-red-600 bg-transparent "
                                 />
-                                <button className=" text-2xl px-2 text-white ">
+                                <button
+                                  className=" text-2xl px-2 text-white "
+                                  onClick={() => {}}
+                                >
                                   <FaPlus />
                                 </button>
                               </div>

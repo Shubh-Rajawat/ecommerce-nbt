@@ -7,6 +7,9 @@ const cartSlice = createSlice({
     name: "cart",
     initialState: initialState,
     reducers: {
+        setDeleteResp: (state) => {
+            state.deleteResp = null
+        }
     },
     extraReducers: (builder) => {
         // -----------------add to cart-------------------------
@@ -31,6 +34,7 @@ const cartSlice = createSlice({
             state.cartData = action.payload;
             state.isError = null;
             state.isLoading = false;
+
         })
         builder.addCase(getCart.pending, (state, action) => {
             state.cartData = null;
@@ -45,9 +49,10 @@ const cartSlice = createSlice({
         })
         // ------------------------delete cart item----------------------------
         builder.addCase(deleteCartItem.fulfilled, (state, action) => {
-            state.cartData = action.payload;
+            state.deleteResp = action.payload;
             state.isError = null;
             state.isLoading = false;
+            // console.log("sukhi", action.payload)
         })
         builder.addCase(deleteCartItem.pending, (state, action) => {
 
@@ -55,7 +60,7 @@ const cartSlice = createSlice({
             state.isError = null;
         })
         builder.addCase(deleteCartItem.rejected, (state, action) => {
-            state.cartData = null;
+            state.deleteResp = null;
             state.isError = action.payload;
             state.isLoading = false;
         })
