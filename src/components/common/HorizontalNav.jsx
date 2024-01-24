@@ -21,8 +21,8 @@ const HorizontalNav = () => {
         <div
           className={` relative h-[50px] bg-[#09405E] w-full flex items-center ${
             showNav
-              ? "   top-0  transition-all duration-[800ms]  ease-in-out"
-              : "  -top-[50px] transition-all duration-[800ms]  ease-in-out"
+              ? "   top-0  transition-all duration-[500ms]  ease-in-out"
+              : "  -top-[50px] transition-all duration-[500ms]  ease-in-out"
           }     `}
         >
           <div className="ss-container  ">
