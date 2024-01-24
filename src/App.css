@@ -521,4 +521,7 @@ footer:before {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1536px) {
+  .ss-container {
+    max-width: 1350px;
+  }
 }
