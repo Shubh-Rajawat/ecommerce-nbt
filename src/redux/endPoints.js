@@ -1,5 +1,5 @@
-// const baseUrl = "http://192.168.29.43:8080"
-const baseUrl = "http://localhost:8080"
+const baseUrl = "http://192.168.1.23:8080"
+// const baseUrl = "http://localhost:8080"
 
 export const apiEndPoints = {
     SIGN_UP: `${baseUrl}/api/users/user-signup`,
@@ -11,4 +11,5 @@ export const apiEndPoints = {
     ADD_TO_CART: `${baseUrl}/api/addtocart/add-to-cart`,
     GET_CART: `${baseUrl}/api/addtocart/get-all-cart`,
     DELETE_ITEM_FROM_CART: `${baseUrl}/api/addtocart/remove-to-cart`,
+    UPDATE_CART_ITEM_QTY: `${baseUrl}/api/addtocart/quantity-update`,
 }

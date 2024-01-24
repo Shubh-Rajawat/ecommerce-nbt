@@ -20,9 +20,8 @@ const SingleProduct = () => {
 
   const handleAddToCart = async () => {
     let data = {
-      ingrdiants: "",
       quantity: 1,
-      menu: "",
+
       product_id: singleProductData?._id,
     };
 

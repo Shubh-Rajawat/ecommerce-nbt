@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import p1 from "../static/assets/c1.svg";
 import coin from "../static/assets/conin.svg";
-import { FaPlus } from "react-icons/fa";
-import { FaMinus } from "react-icons/fa";
+
 import { FaTrashAlt } from "react-icons/fa";
 import EmptyCart from "../components/cart/EmptyCart";
 import CartSkull from "../components/cart/CartSkull";
@@ -11,8 +10,9 @@ import { FaTrashCan } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItem, getCart } from "../redux/apiData/cart";
-import { useToast } from "@chakra-ui/react";
+import { Button, Spinner, useToast } from "@chakra-ui/react";
 import { cartActions } from "../redux/actions/cart";
+import UpdateQuantity from "../components/cart/UpdateQuantity";
 const pro = [1, 2];
 const Cart = () => {
   const dispatch = useDispatch();
@@ -20,11 +20,13 @@ const Cart = () => {
   const navigate = useNavigate();
   const [opendel, setOpenDel] = useState(false);
   const [itemId, setitemId] = useState();
-  // const [updateqty,setupdateqty]=useState()
-  const { cartData, isLoading, deleteResp } = useSelector(
+  const { cartData, isLoading, deleteResp, updateQtyresp } = useSelector(
     (state) => state.cart
   );
-  console.log("deleteResp", deleteResp);
+  useEffect(() => {
+    dispatch(cartActions.setDeleteResp());
+  }, [updateQtyresp]);
+  // console.log("deleteResp", deleteResp);
   let data = { limit: 6, page: 1 };
   useEffect(() => {
     dispatch(getCart(data, false));
@@ -44,6 +46,20 @@ const Cart = () => {
     dispatch(cartActions.setDeleteResp());
   }, [deleteResp]);
 
+  useEffect(() => {
+    if (updateQtyresp?.status === true || updateQtyresp?.status === false) {
+      toast({
+        description:
+          updateQtyresp?.status === true
+            ? `Quantity Updated`
+            : `Error Occured!`,
+        status: updateQtyresp?.status === true ? "success" : "error",
+        position: "top",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }, [updateQtyresp]);
   const deleteItem = () => {
     // setisSkip(true);
     dispatch(deleteCartItem({ id: itemId }));
@@ -88,26 +104,11 @@ const Cart = () => {
                               </h4>
                             </div>
                             {/* <h3 className="text-3cl red my-2">1090</h3> */}
-                            <div className=" mt-5   flex">
-                              <div className="bg-[#09405E] rounded-[50px] flex py-1">
-                                <button className=" text-2xl px-3 text-white">
-                                  <FaMinus />
-                                </button>
-                                <input
-                                  type="text"
-                                  name=""
-                                  value={item?.quantity}
-                                  id=""
-                                  className=" w-5 text-2xl font-semibold   text-red-600 bg-transparent "
-                                />
-                                <button
-                                  className=" text-2xl px-2 text-white "
-                                  onClick={() => {}}
-                                >
-                                  <FaPlus />
-                                </button>
-                              </div>
-                            </div>
+                            <UpdateQuantity
+                              qty={item?.quantity}
+                              id={item?._id}
+                              key={item?._id}
+                            />
                           </div>
                           <div className=" absolute top-0 right-0 bg-[#D63348] p-3 rounded-es-xl ">
                             <FaTrashAlt
