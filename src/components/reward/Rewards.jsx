@@ -1,15 +1,17 @@
 import React from 'react'
+import BreadCrumb from '../common/BreadCrumb'
 
 const Rewards = () => {
   return (
     <>
+<BreadCrumb 
 
-             <section className="bg-[#F2F2F2] py-5">
-        <div className="ss-container flex justify-between">
-          <h1 className=" text-2xl ramto">Rewards</h1>
-          <p>Home / Your Orders_History</p>
-        </div>
-      </section>
+     page={ {
+          title: "Rewards",
+          path: "Home / Rewards",
+          bg: "bg-[#F2F2F2]",
+        } }
+/>
      <div className="w-[100%] ss-container px-1 py-5 md:py-12 flex justify-center">
         <div className="w-full md:w-[60%] lg:w-[55%] xl:w-[44%] h-full bg-[#F2F2F2] px-5  md:px-12 py-10 rounded-3xl">
           <div

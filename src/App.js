@@ -38,7 +38,7 @@ function App() {
           <Route path="/edit-profile" element={ <EditProfile /> } />
           <Route path="/profile/settings" element={ <ProfileSettings /> } />
           <Route path="/profile/help-and-support" element={ <HelpAndSupport /> } />
-          <Route path="reward-points" element={ <RewardPointPage /> } />
+          <Route path="/reward-points" element={ <RewardPointPage /> } />
         </Routes>
         <Footer />
       </BrowserRouter>
