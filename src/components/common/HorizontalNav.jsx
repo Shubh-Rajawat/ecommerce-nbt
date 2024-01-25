@@ -9,8 +9,8 @@ import Cookies from "js-cookie";
 const HorizontalNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { userData } = useSelector((state) => state.user);
+  const [width, setWidth] = useState(window.innerWidth > 991);
   const [token, setToken] = useState(false);
-  const [width, setWidth] = useState(window.innerWidth);
   const dispatch = useDispatch();
   const toast = useToast();
   let tokn = Cookies.get("token");
@@ -24,11 +24,23 @@ const HorizontalNav = () => {
   const navClose = () => {
     dispatch(navAction.toggleNav());
   };
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWidth(window.innerWidth > 991);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        setWidth(window.innerWidth > 991);
+      });
+    };
+  }, []);
   return (
     <div
       className={` w-full h-[50px] overflow-hidden bg-transparent z-20 absolute`}
     >
-      {width > 991 ? (
+      {width ? (
         <div
           className={` relative h-[50px] bg-[#09405E] w-full flex items-center ${
             showNav

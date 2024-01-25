@@ -45,3 +45,22 @@ export const verifyOtp = createAsyncThunk("verify otp", async (args, { rejectWit
     }
 })
 
+// updating user profile-----
+export const userUpdate = createAsyncThunk("update", async (args, { rejectWithValue }) => {
+    try {
+        let cook = Cookies.get('token')
+        const response = await axios.post(`${apiEndPoints.UPDATE_USER}?token=${cook}`, args)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error.response.data)
+    }
+})
+// fetching user profile-----
+export const fetchUser = createAsyncThunk("fetch", async (args, { rejectWithValue }) => {
+    try {
+        const response = await axios.post(`${apiEndPoints.FETCH_USER}?token=${args}`)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error.response.data)
+    }
+})

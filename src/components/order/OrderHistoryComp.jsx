@@ -1,5 +1,6 @@
 import React from "react";
 import { tableData } from "../../Data";
+import { NavLink } from "react-router-dom";
 
 const OrderHistoryComp = () => {
   return (
@@ -41,7 +42,11 @@ const OrderHistoryComp = () => {
                   <td className="px-6 py-4">
                     <img src={res?.img} />
                   </td>
-                  <td className="px-6 py-4">{res?.order}</td>
+                  <td className="px-6 py-4">
+                    <NavLink to='/order-details'>
+                      {res?.order}
+                    </NavLink>
+                  </td>
                   <td className="px-6 py-4">{res?.total}</td>
                   <td className="px-6 py-4">{res?.qty}</td>
 

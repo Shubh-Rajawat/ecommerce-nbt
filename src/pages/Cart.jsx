@@ -13,7 +13,6 @@ import { deleteCartItem, getCart } from "../redux/apiData/cart";
 import { Button, Spinner, useToast } from "@chakra-ui/react";
 import { cartActions } from "../redux/actions/cart";
 import UpdateQuantity from "../components/cart/UpdateQuantity";
-const pro = [1, 2];
 const Cart = () => {
   const dispatch = useDispatch();
   const toast = useToast();
@@ -24,13 +23,13 @@ const Cart = () => {
     (state) => state.cart
   );
 
-  useEffect(() => {
-    dispatch(cartActions.setDeleteResp());
-    dispatch(getCart(data));
-  }, [updateQtyresp]);
+  // useEffect(() => {
+  //   dispatch(cartActions.setDeleteResp());
+  //   dispatch(getCart(data));
+  // }, [updateQtyresp]);
   let data = { limit: 6, page: 1 };
   useEffect(() => {
-    dispatch(getCart(data, false));
+    dispatch(getCart(data));
     // delete toast
     if (deleteResp?.status === true || deleteResp?.status === false) {
       toast({
@@ -44,8 +43,9 @@ const Cart = () => {
         isClosable: true,
       });
     }
+    // dispatch(cartActions.setDeleteResp());
     dispatch(cartActions.setDeleteResp());
-  }, [deleteResp]);
+  }, [deleteResp, updateQtyresp]);
 
   useEffect(() => {
     if (updateQtyresp?.status === true || updateQtyresp?.status === false) {

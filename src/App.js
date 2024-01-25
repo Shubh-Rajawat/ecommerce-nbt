@@ -18,7 +18,9 @@ import ProfileSettings from "./pages/ProfileSettings";
 import HelpAndSupport from "./pages/HelpAndSupport";
 import EditProfile from "./pages/EditProfile";
 import RewardPointPage from "./pages/RewardPointPage";
+
 import Protected from "./components/Protected";
+import OrderDetails from "./pages/OrderDetails";
 function App() {
   return (
     <>
@@ -41,6 +43,7 @@ function App() {
           <Route path="/profile/settings" element={<Protected Component={ProfileSettings} />} />
           <Route path="/profile/help-and-support" element={<HelpAndSupport />} />
           <Route path="/reward-points" element={<Protected Component={RewardPointPage} />} />
+            <Route path="/order-details" element={<OrderDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

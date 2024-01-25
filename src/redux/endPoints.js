@@ -12,4 +12,6 @@ export const apiEndPoints = {
     GET_CART: `${baseUrl}/api/addtocart/get-all-cart`,
     DELETE_ITEM_FROM_CART: `${baseUrl}/api/addtocart/remove-to-cart`,
     UPDATE_CART_ITEM_QTY: `${baseUrl}/api/addtocart/quantity-update`,
+    FETCH_USER: `${baseUrl}/api/users/get-singel-user`,
+    UPDATE_USER: `${baseUrl}/api/users/user-update`
 }

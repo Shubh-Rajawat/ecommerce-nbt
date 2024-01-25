@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { sendOtp, userLogin, userSignup, verifyOtp } from "../apiData/user";
+import { fetchUser, sendOtp, userLogin, userSignup, userUpdate, verifyOtp } from "../apiData/user";
 
-const initialState = { userData: null, isLoading: false, isError: null, empty: false, otpEmail: null, otpResp: false }
+const initialState = { userData: null, isLoading: false, isError: null, empty: false, otpEmail: null, otpResp: false, profileData: null, isUserUpdated: null }
 const userSlice = createSlice({
     name: "auth",
     initialState: initialState,
@@ -82,6 +82,40 @@ const userSlice = createSlice({
         })
         builder.addCase(verifyOtp.rejected, (state, action) => {
             state.otpResp = null
+            state.isLoading = false;
+            state.isError = action.payload;
+        })
+        // ------------------Fetch User ------------------------
+        builder.addCase(fetchUser.fulfilled, (state, action) => {
+            state.profileData = action.payload.data
+            state.isLoading = false;
+            state.isError = null;
+        })
+        builder.addCase(fetchUser.pending, (state, action) => {
+            state.profileData = null;
+            state.isLoading = true;
+            state.isError = null;
+
+        })
+        builder.addCase(fetchUser.rejected, (state, action) => {
+            state.profileData = null;
+            state.isLoading = false;
+            state.isError = action.payload;
+
+        })
+        // ------------------user update ------------------------
+        builder.addCase(userUpdate.fulfilled, (state, action) => {
+            state.isUserUpdated = action.payload
+            state.isLoading = false;
+            state.isError = null;
+        })
+        builder.addCase(userUpdate.pending, (state, action) => {
+            // state.isUserUpdated=action.payload
+            state.isLoading = true;
+            state.isError = null;
+        })
+        builder.addCase(userUpdate.rejected, (state, action) => {
+            // state.isUserUpdated=action.payload
             state.isLoading = false;
             state.isError = action.payload;
         })

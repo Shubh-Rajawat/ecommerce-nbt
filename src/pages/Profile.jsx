@@ -14,7 +14,7 @@ const data = [
     id: 1,
     name: "Orders",
     icon: <FaClipboardList className="text-[#D63348] text-3xl" />,
-    path: "",
+    path: "/order-details",
   },
   // {
   //   name: "Language",
