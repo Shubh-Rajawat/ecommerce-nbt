@@ -8,7 +8,7 @@ import { updateCartItemQty } from "../../redux/apiData/cart";
 const UpdateQuantity = (props) => {
   const dispatch = useDispatch();
   const { isUpdateLoading, isUpdateError } = useSelector((state) => state.cart);
-  const [updateqty, setupdateqty] = useState(props?.qty);
+  let [updateqty, setupdateqty] = useState(props?.qty);
 
   const handleQty = () => {
     dispatch(updateCartItemQty({ cart_id: props?.id, quantity: updateqty }));
@@ -20,7 +20,7 @@ const UpdateQuantity = (props) => {
           <button
             className=" text-2xl px-3 text-white"
             onClick={() => {
-              setupdateqty(updateqty - 1);
+              updateqty > 1 && setupdateqty(updateqty - 1);
             }}
           >
             <FaMinus />

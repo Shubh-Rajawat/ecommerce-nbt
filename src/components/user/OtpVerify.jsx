@@ -3,10 +3,15 @@ import React, { useEffect, useState } from "react";
 import { HStack, PinInput, PinInputField } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyOtp } from "../../redux/apiData/user";
+import ResetPassword from "./ResetPassword";
 const OtpVerify = () => {
   const dispatch = useDispatch();
-  const { otpEmail } = useSelector((state) => state.user);
+  const { otpEmail, isError, userData, otpResp } = useSelector(
+    (state) => state.user
+  );
   const [otp, setOtp] = useState("");
+  // console.log("otpResp", otpResp);
+
   const [otpError, setOtpError] = useState(false);
   const [timer, setTimer] = useState(120);
   useEffect(() => {
@@ -45,6 +50,11 @@ const OtpVerify = () => {
         </div>
         <div className="py-6 bg-[#F2F2F2] md:px-16 px-8">
           <form onSubmit={onOtpSubmit}>
+            {isError && (
+              <div className="text-red-600 text-sm text-center">
+                {isError?.message}
+              </div>
+            )}
             <div className="pb-4">
               <h4 className="text-blue text-center text-[16px] ramto">
                 Verify OTP
@@ -92,6 +102,7 @@ const OtpVerify = () => {
             </span>
           </div>
         </div>
+        {/* <ResetPassword isOpen={otpResp?.status} /> */}
       </div>
     </section>
   );

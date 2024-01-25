@@ -7,13 +7,22 @@ import Signup from "./Signup";
 import OtpVerify from "./OtpVerify";
 import ForgotPassword from "./ForgotPassword";
 import { userActions } from "../../redux/actions/userAuth";
+import ResetPassword from "./ResetPassword";
 
 const LoginSingup = () => {
   const dispatch = useDispatch();
   const { showLoginSignup, userComp, otpTab, forgotPasswordTab } = useSelector(
     (state) => state.nav
   );
-  // console.log(otpTab, userComp);
+  const { otpEmail, isError, userData, otpResp } = useSelector(
+    (state) => state.user
+  );
+  console.log("otpResp", otpResp);
+  useEffect(() => {
+    if (otpResp?.status === true) {
+      dispatch(navAction.setShowResetPassword(true));
+    }
+  }, [otpResp]);
   const emptyFields = () => {
     dispatch(userActions.setFieldsEmpty(false));
   };
@@ -81,6 +90,7 @@ const LoginSingup = () => {
           </div>
         </div>
       </Modal>
+      {otpResp?.status === true && <ResetPassword isopen={otpResp?.status} />}
     </div>
   );
 };

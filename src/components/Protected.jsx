@@ -7,9 +7,9 @@ const Protected = (props) => {
   const { Component } = props;
   const toast = useToast();
   const navigate = useNavigate();
+  let login = Cookies.get("token");
   useEffect(() => {
-    let login = Cookies.get("token");
-    if (!login) {
+    if (login === "undefined" || !login) {
       tost();
       navigate("/");
     }
@@ -18,13 +18,13 @@ const Protected = (props) => {
   const tost = () => {
     toast({
       description: `Login required`,
-      status: "error",
+      status: "warning",
       position: "top",
       duration: 3000,
       isClosable: true,
     });
   };
-  return <Component />;
+  return <>{login !== "undefined" && login && <Component />};</>;
 };
 
 export default Protected;

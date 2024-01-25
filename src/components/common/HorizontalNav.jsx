@@ -8,24 +8,17 @@ import Cookies from "js-cookie";
 
 const HorizontalNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [width, setWidth] = useState(window.innerWidth);
+  const { userData } = useSelector((state) => state.user);
   const [token, setToken] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
   const dispatch = useDispatch();
   const toast = useToast();
   let tokn = Cookies.get("token");
   useEffect(() => {
     if (tokn) {
       setToken(true);
-    } else {
-      toast({
-        description: `Login required`,
-        status: "error",
-        position: "top",
-        duration: 3000,
-        isClosable: true,
-      });
     }
-  }, [tokn, token]);
+  }, [tokn, token, userData]);
   console.log(token);
   const { showNav } = useSelector((state) => state.nav);
   const navClose = () => {
@@ -82,7 +75,19 @@ const HorizontalNav = () => {
                 {token ? (
                   <Link to="/cart">My Cart</Link>
                 ) : (
-                  <Link to="/">My Cart</Link>
+                  <Link
+                    onClick={() => {
+                      toast({
+                        description: `Login required`,
+                        status: "warning",
+                        position: "top",
+                        duration: 3000,
+                        isClosable: true,
+                      });
+                    }}
+                  >
+                    My Cart
+                  </Link>
                 )}
               </li>
             </ul>

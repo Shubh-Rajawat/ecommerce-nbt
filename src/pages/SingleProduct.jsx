@@ -6,13 +6,13 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { singleProductDetail } from "../redux/apiData/products";
 import { addToCart } from "../redux/apiData/cart";
+import { useToast } from "@chakra-ui/react";
 const SingleProduct = () => {
   const { id } = useParams();
+  const toast = useToast();
   const { singleProductData } = useSelector((state) => state.product);
-  console.log("singleProductData", singleProductData);
-  const { cartData, isLoading, deleteResp, updateQtyresp } = useSelector(
-    (state) => state.cart
-  );
+  const { productData, isLoading } = useSelector((state) => state.cart);
+  console.log("add to cart", productData);
   const [isLiked, setIsLiked] = useState(false);
   const dispatch = useDispatch();
 
@@ -23,12 +23,20 @@ const SingleProduct = () => {
   const handleAddToCart = async () => {
     let data = {
       quantity: 1,
-
       product_id: singleProductData?._id,
     };
-
     dispatch(addToCart(data));
+    if (productData?.status === true) {
+      toast({
+        description: `Item Added`,
+        status: "success",
+        position: "top",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
+
   return (
     <section className=" space1 select-none">
       <div className="ss-container ">

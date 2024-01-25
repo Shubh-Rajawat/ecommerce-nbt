@@ -47,7 +47,10 @@ const Header = () => {
                     ? navigate("/cart")
                     : toast({
                         description: `Login required`,
-                        status: "error",
+                        containerStyle: {
+                          marginTop: "50px",
+                        },
+                        status: "warning",
                         position: "top",
                         duration: 3000,
                         isClosable: true,

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { sendOtp, userLogin, userSignup, verifyOtp } from "../apiData/user";
 
-const initialState = { userData: null, isLoading: false, isError: null, empty: false, otpEmail: null }
+const initialState = { userData: null, isLoading: false, isError: null, empty: false, otpEmail: null, otpResp: false }
 const userSlice = createSlice({
     name: "auth",
     initialState: initialState,
@@ -70,17 +70,18 @@ const userSlice = createSlice({
         })
         // ------------------verify OTP------------------------
         builder.addCase(verifyOtp.fulfilled, (state, action) => {
-            state.userData = action.payload
+            state.otpResp = action.payload
             state.isLoading = false;
             state.isError = null;
+            console.log("otp resp sukhi", action.payload);
         })
         builder.addCase(verifyOtp.pending, (state, action) => {
-            // state.userData=action.payload
+            state.otpResp = null
             state.isLoading = true;
             state.isError = null;
         })
         builder.addCase(verifyOtp.rejected, (state, action) => {
-            // state.userData=action.payload
+            state.otpResp = null
             state.isLoading = false;
             state.isError = action.payload;
         })

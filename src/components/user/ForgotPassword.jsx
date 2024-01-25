@@ -5,13 +5,13 @@ import { navAction } from "../../redux/slices/toggleNavSlice";
 import { userActions } from "../../redux/actions/userAuth";
 
 const ForgotPassword = () => {
-  const { empty, isError, isLoading, userData } = useSelector(
+  const { empty, isError, isLoading, userData, otpEmail } = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();
   const [email, setemail] = useState("");
   const [inputError, setinputError] = useState(false);
-
+  console.log("isError", isError, otpEmail);
   const sendOTP = (e) => {
     e.preventDefault();
     if (!email) {
@@ -42,15 +42,22 @@ const ForgotPassword = () => {
       </div>
       <form onSubmit={sendOTP}>
         <div className="py-8 bg-[#F2F2F2] md:px-16 px-8">
+          {isError && (
+            <div className="text-red-600 text-sm text-center">
+              {isError?.message}
+            </div>
+          )}
           <div className="flex flex-col items-start px-8">
             <label htmlFor="email" className="text-[#09405E] ramto text-[14px]">
               Email address
             </label>
             <input
-              type="text"
+              required
+              type="email"
               name="email"
               id="email"
               onChange={(e) => {
+                setinputError(false);
                 setemail(e.target.value);
               }}
               placeholder="Enter email"

@@ -3,12 +3,25 @@ import {
   DrawerBody,
   DrawerHeader,
   DrawerContent,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import Cookies from "js-cookie";
+import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const VerticalNav = (props) => {
   const { isOpen, onOpen, onClose } = props;
+  const { userData } = useSelector((state) => state.user);
+  const [token, setToken] = useState(false);
+  const toast = useToast();
+  let tokn = Cookies.get("token");
+  useEffect(() => {
+    if (tokn) {
+      setToken(true);
+    }
+  }, [tokn, token, userData]);
+  console.log(token);
   return (
     <>
       <Drawer
@@ -85,12 +98,35 @@ const VerticalNav = (props) => {
                   className="text-[#09405E] ramto  transition-colors"
                   onClick={props?.onClose}
                 >
-                  <Link
+                  {/* <Link
                     className="hover:text-yellow-500 cursor-pointer"
                     to="/cart"
                   >
                     My Cart
-                  </Link>
+                  </Link> */}
+                  {token ? (
+                    <Link
+                      to="/cart"
+                      className="hover:text-yellow-500 cursor-pointer"
+                    >
+                      My Cart
+                    </Link>
+                  ) : (
+                    <Link
+                      className="hover:text-yellow-500 cursor-pointer"
+                      onClick={() => {
+                        toast({
+                          description: `Login required`,
+                          status: "warning",
+                          position: "top",
+                          duration: 3000,
+                          isClosable: true,
+                        });
+                      }}
+                    >
+                      My Cart
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>

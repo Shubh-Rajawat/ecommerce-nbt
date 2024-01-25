@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const navSlice = createSlice({
     name: "toggle nav",
-    initialState: { showNav: false, showLoginSignup: false, userComp: "login", otpTab: false, forgotPasswordTab: false },
+    initialState: { showNav: false, showLoginSignup: false, userComp: "login", otpTab: false, forgotPasswordTab: false, resetPasswordTab: false },
     reducers: {
         toggleNav: (state) => {
             // console.log(state.showNav)
@@ -26,6 +26,13 @@ const navSlice = createSlice({
             state.otpTab = false
             state.userComp = false
             state.forgotPasswordTab = !state.forgotPasswordTab
+        },
+        setShowResetPassword: (state, action) => {
+            state.otpTab = false
+            state.userComp = false
+            state.forgotPasswordTab = false
+            state.resetPasswordTab = action.payload
+            state.showLoginSignup = false
         },
     }
 })
