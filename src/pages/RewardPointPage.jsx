@@ -1,13 +1,12 @@
-import React from 'react'
-import Rewards from '../components/reward/Rewards'
+import React from "react";
+import Rewards from "../components/reward/Rewards";
 
 const RewardPointPage = () => {
   return (
- <>
+    <>
+      <Rewards />
+    </>
+  );
+};
 
-    <Rewards />
- </>
-  )
-}
-
-export default RewardPointPage
+export default RewardPointPage;

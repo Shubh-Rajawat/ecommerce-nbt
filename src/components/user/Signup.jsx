@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LuEyeOff } from "react-icons/lu";
 import { LuEye } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,12 +8,21 @@ import "react-phone-number-input/style.css";
 import { userSignup } from "../../redux/apiData/user";
 import { Spinner } from "@chakra-ui/react";
 import { userActions } from "../../redux/actions/userAuth";
+import Cookies from "js-cookie";
 const Signup = () => {
   const dispatch = useDispatch();
   const { userData, isLoading, isError } = useSelector((state) => state.user);
   const [value, setValue] = useState("+91");
   const [showPassword, setShowPassword] = useState(false);
   const [inputError, setInputError] = useState(false);
+  console.log("userData", userData);
+  useEffect(() => {
+    if (userData?.status === true) {
+      Cookies.set("token", userData?.token);
+      dispatch(userActions.setFieldsEmpty(true));
+      dispatch(navAction.toggleLoginSignup());
+    }
+  }, [userData]);
   const [user, setUser] = useState({
     name: "",
     email: "",

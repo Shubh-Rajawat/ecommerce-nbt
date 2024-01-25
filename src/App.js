@@ -18,27 +18,29 @@ import ProfileSettings from "./pages/ProfileSettings";
 import HelpAndSupport from "./pages/HelpAndSupport";
 import EditProfile from "./pages/EditProfile";
 import RewardPointPage from "./pages/RewardPointPage";
+import Protected from "./components/Protected";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/notification" element={ <Notification /> } />
-          <Route path="/" element={ <Home /> } />
-          <Route path="/contact" element={ <Contact /> } />
-          <Route path="/about" element={ <About /> } />
-          <Route path="/products" element={ <Products /> } />
-          <Route path="/info/:id/:slug" element={ <SingleProduct /> } />
-          <Route path="/cart" element={ <Cart /> } />
-          <Route path="/address" element={ <Address /> } />
-          <Route path="/order-location" element={ <OrderLocation /> } />
-          <Route path="/orders" element={ <OrderHistory /> } />
-          <Route path="/profile" element={ <Profile /> } />
-          <Route path="/edit-profile" element={ <EditProfile /> } />
-          <Route path="/profile/settings" element={ <ProfileSettings /> } />
-          <Route path="/profile/help-and-support" element={ <HelpAndSupport /> } />
-          <Route path="/reward-points" element={ <RewardPointPage /> } />
+          <Route path="/notification" element={<Protected Component={Notification} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/info/:id/:slug" element={<SingleProduct />} />
+          {/* <Route path="/cart" element={ <Cart /> } /> */}
+          <Route path="/cart" element={<Protected Component={Cart} />} />
+          <Route path="/address" element={<Protected Component={Address} />} />
+          <Route path="/order-location" element={<Protected Component={OrderLocation} />} />
+          <Route path="/orders" element={<Protected Component={OrderHistory} />} />
+          <Route path="/profile" element={<Protected Component={Profile} />} />
+          <Route path="/edit-profile" element={<Protected Component={EditProfile} />} />
+          <Route path="/profile/settings" element={<Protected Component={ProfileSettings} />} />
+          <Route path="/profile/help-and-support" element={<HelpAndSupport />} />
+          <Route path="/reward-points" element={<Protected Component={RewardPointPage} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

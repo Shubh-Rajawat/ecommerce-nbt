@@ -11,9 +11,12 @@ const userSlice = createSlice({
             state.isError = null;
         },
         setOtpEmail: (state, action) => {
-
             state.otpEmail = action.payload
-        }
+        },
+        removeCookie: (state, action) => {
+            state.userData = null
+        },
+
 
     },
     extraReducers: (builder) => {

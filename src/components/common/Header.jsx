@@ -11,11 +11,13 @@ import { ImExit } from "react-icons/im";
 import LoginSingup from "../user/LoginSingup";
 import { userActions } from "../../redux/actions/userAuth";
 import Cookies from "js-cookie";
+import { useToast } from "@chakra-ui/react";
 
 const Header = () => {
   const { userData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [token, setToken] = useState(false);
+  const toast = useToast();
   let tokn = Cookies.get("token");
   useEffect(() => {
     if (tokn) {
@@ -41,7 +43,15 @@ const Header = () => {
               <div
                 className="relative cursor-pointer"
                 onClick={() => {
-                  navigate("/cart");
+                  token
+                    ? navigate("/cart")
+                    : toast({
+                        description: `Login required`,
+                        status: "error",
+                        position: "top",
+                        duration: 3000,
+                        isClosable: true,
+                      });
                 }}
               >
                 <CiShoppingCart className=" " />
@@ -99,6 +109,7 @@ const Header = () => {
                               Cookies.remove("token");
                               setToken(false);
                               navigate("/");
+                              dispatch(userActions.removeCookie());
                             }}
                           >
                             <ImExit className="text-[#D63348] text-sm" /> Logout

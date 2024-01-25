@@ -7,7 +7,7 @@ export const userSignup = createAsyncThunk("signup", async (args, { rejectWithVa
     try {
         // console.log("asas", args)
         const response = await axios.post(`${apiEndPoints.SIGN_UP}`, args)
-        return response.data.message
+        return response.data
     } catch (error) {
         return rejectWithValue(error.response.data)
     }

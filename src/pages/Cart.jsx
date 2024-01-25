@@ -23,10 +23,11 @@ const Cart = () => {
   const { cartData, isLoading, deleteResp, updateQtyresp } = useSelector(
     (state) => state.cart
   );
+
   useEffect(() => {
     dispatch(cartActions.setDeleteResp());
+    dispatch(getCart(data));
   }, [updateQtyresp]);
-  // console.log("deleteResp", deleteResp);
   let data = { limit: 6, page: 1 };
   useEffect(() => {
     dispatch(getCart(data, false));
@@ -100,7 +101,9 @@ const Cart = () => {
                             <div className="flex justify-between">
                               <h3 className="text-3pl">Large</h3>
                               <h4 className="text-3cl  red">
-                                {item?.product_id?.price}
+                                {(
+                                  item?.product_id?.price * item?.quantity
+                                ).toFixed(2)}
                               </h4>
                             </div>
                             {/* <h3 className="text-3cl red my-2">1090</h3> */}

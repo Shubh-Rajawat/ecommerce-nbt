@@ -1,14 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { navAction } from "../../redux/slices/toggleNavSlice";
 import VerticalNav from "./VerticalNav";
-import { useDisclosure } from "@chakra-ui/react";
+import { useDisclosure, useToast } from "@chakra-ui/react";
+import Cookies from "js-cookie";
 
 const HorizontalNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [width, setWidth] = useState(window.innerWidth);
+  const [token, setToken] = useState(false);
   const dispatch = useDispatch();
+  const toast = useToast();
+  let tokn = Cookies.get("token");
+  useEffect(() => {
+    if (tokn) {
+      setToken(true);
+    } else {
+      toast({
+        description: `Login required`,
+        status: "error",
+        position: "top",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }, [tokn, token]);
+  console.log(token);
   const { showNav } = useSelector((state) => state.nav);
   const navClose = () => {
     dispatch(navAction.toggleNav());
@@ -61,7 +79,11 @@ const HorizontalNav = () => {
                 className="text-white ramto hover:text-yellow-500 cursor-pointer transition-colors"
                 onClick={navClose}
               >
-                <Link to="/cart">My Cart</Link>
+                {token ? (
+                  <Link to="/cart">My Cart</Link>
+                ) : (
+                  <Link to="/">My Cart</Link>
+                )}
               </li>
             </ul>
           </div>

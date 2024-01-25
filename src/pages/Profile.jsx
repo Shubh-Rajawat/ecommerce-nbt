@@ -7,6 +7,7 @@ import { IoMdSettings } from "react-icons/io";
 import { ImLocation } from "react-icons/im";
 
 import SmallCard from "../components/profile/SmallCard";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -34,6 +35,7 @@ const data = [
   },
 ];
 const Profile = () => {
+  const navigate = useNavigate();
   return (
     <>
       <BreadCrumb
@@ -48,7 +50,12 @@ const Profile = () => {
           <div
             className={`border  rounded-[20px] p-8 bg-white shadow-lg relative overflow-hidden`}
           >
-            <div className=" absolute top-0 right-0 bg-[#D63348] p-4 rounded-es-xl cursor-pointer">
+            <div
+              className=" absolute top-0 right-0 bg-[#D63348] p-4 rounded-es-xl cursor-pointer"
+              onClick={() => {
+                navigate("/edit-profile");
+              }}
+            >
               <FaEdit color="white" size={22} className="" />
             </div>
             <div className="">

@@ -11,7 +11,7 @@ const Login = () => {
   const { empty, isError, isLoading, userData } = useSelector(
     (state) => state.user
   );
-  console.log("User", userData);
+  // console.log("User", userData);
   useEffect(() => {
     if (userData?.status === true) {
       Cookies.set("token", userData?.token);
@@ -19,7 +19,7 @@ const Login = () => {
       dispatch(navAction.toggleLoginSignup());
     }
   }, [userData]);
-  // console.log("empty", empty);
+  // console.log("empty", userData);
   const [inputError, setinputError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [user, setuser] = useState({
