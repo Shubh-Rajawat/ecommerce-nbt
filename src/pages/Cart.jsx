@@ -13,7 +13,6 @@ import { deleteCartItem, getCart } from "../redux/apiData/cart";
 import { Button, Spinner, useToast } from "@chakra-ui/react";
 import { cartActions } from "../redux/actions/cart";
 import UpdateQuantity from "../components/cart/UpdateQuantity";
-const pro = [1, 2];
 const Cart = () => {
   const dispatch = useDispatch();
   const toast = useToast();
