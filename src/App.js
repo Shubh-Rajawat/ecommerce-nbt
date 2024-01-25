@@ -18,6 +18,7 @@ import ProfileSettings from "./pages/ProfileSettings";
 import HelpAndSupport from "./pages/HelpAndSupport";
 import EditProfile from "./pages/EditProfile";
 import RewardPointPage from "./pages/RewardPointPage";
+import OrderDetails from "./pages/OrderDetails";
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
           <Route path="/address" element={ <Address /> } />
           <Route path="/order-location" element={ <OrderLocation /> } />
           <Route path="/orders" element={ <OrderHistory /> } />
+          <Route path="/order-details" element={<OrderDetails />} />
           <Route path="/profile" element={ <Profile /> } />
           <Route path="/edit-profile" element={ <EditProfile /> } />
           <Route path="/profile/settings" element={ <ProfileSettings /> } />
