@@ -70,10 +70,14 @@ const cartSlice = createSlice({
         });
         // ------------------------update cart item quantity----------------------------
         builder.addCase(updateCartItemQty.fulfilled, (state, action) => {
+            // let data = state.cartData.filter((item) => item._id === action.payload.data._id)
+            // let cart = state.cartData
+            // state.cartData
             state.updateQtyresp = action.payload;
             state.isUpdateError = null;
             state.isUpdateLoading = false;
-            // console.log("sukhi", action.payload)
+            // console.log("sukhi", data)
+            // console.log("sukhi", action.payload.data._id)
         });
         builder.addCase(updateCartItemQty.pending, (state, action) => {
             state.isUpdateLoading = true;

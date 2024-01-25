@@ -10,7 +10,9 @@ const SingleProduct = () => {
   const { id } = useParams();
   const { singleProductData } = useSelector((state) => state.product);
   console.log("singleProductData", singleProductData);
-
+  const { cartData, isLoading, deleteResp, updateQtyresp } = useSelector(
+    (state) => state.cart
+  );
   const [isLiked, setIsLiked] = useState(false);
   const dispatch = useDispatch();
 
@@ -60,7 +62,7 @@ const SingleProduct = () => {
           <div className=" flex-1">
             <div className="">
               <h2 className="text-2pl">{singleProductData?.name}</h2>
-              <p className="my-3">Pollo Fritto 100g, insalata, mayo</p>
+              <p className="my-3">{singleProductData?.description}</p>
               <div className="">
                 <div className="flex justify-between">
                   <div className="">
@@ -74,9 +76,11 @@ const SingleProduct = () => {
                       Small 5 pz.
                     </label>
                   </div>
-                  <span className="text-1pl mr-5">100</span>
+                  <span className="text-1pl mr-5">
+                    {singleProductData?.price}
+                  </span>
                 </div>
-                <div className="flex justify-between">
+                {/* <div className="flex justify-between">
                   <div className="">
                     <input
                       type="radio"
@@ -89,35 +93,37 @@ const SingleProduct = () => {
                     </label>
                   </div>
                   <span className="text-1pl mr-5">100</span>
-                </div>
+                </div> */}
               </div>
-              <div className="bg-[#F2F2F2] rounded-3xl p-5 mt-5">
-                <h2 className="text-2pl">Modify Ingredients</h2>
-                <div className="flex justify-between mb-3">
-                  <label htmlFor="one" className="text-4pl">
-                    <input
-                      type="checkbox"
-                      name="one"
-                      id="one"
-                      className=" mr-4 text-3pl"
-                    />
-                    Pomosoro
-                  </label>
-                  <span className="text-1pl">200</span>
+              {singleProductData?.ingrdiants?.length > 0 && (
+                <div className="bg-[#F2F2F2] rounded-3xl p-5 mt-5">
+                  <h2 className="text-2pl">Modify Ingredients</h2>
+                  <div className="flex justify-between mb-3">
+                    <label htmlFor="one" className="text-4pl">
+                      <input
+                        type="checkbox"
+                        name="one"
+                        id="one"
+                        className=" mr-4 text-3pl"
+                      />
+                      Pomosoro
+                    </label>
+                    <span className="text-1pl">200</span>
+                  </div>
+                  <div className="flex justify-between mb-3">
+                    <label htmlFor="one" className="text-4pl">
+                      <input
+                        type="checkbox"
+                        name="one"
+                        id="one"
+                        className=" mr-4 text-3pl"
+                      />
+                      Pomosoro
+                    </label>
+                    <span className="text-1pl">200</span>
+                  </div>
                 </div>
-                <div className="flex justify-between mb-3">
-                  <label htmlFor="one" className="text-4pl">
-                    <input
-                      type="checkbox"
-                      name="one"
-                      id="one"
-                      className=" mr-4 text-3pl"
-                    />
-                    Pomosoro
-                  </label>
-                  <span className="text-1pl">200</span>
-                </div>
-              </div>
+              )}
               <button className="btn-red mt-5" onClick={handleAddToCart}>
                 Add To Cart
               </button>
