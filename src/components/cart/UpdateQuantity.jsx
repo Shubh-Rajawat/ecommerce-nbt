@@ -1,17 +1,34 @@
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCartItemQty } from "../../redux/apiData/cart";
+import { getCart, updateCartItemQty } from "../../redux/apiData/cart";
 
 const UpdateQuantity = (props) => {
+  const toast = useToast();
+
   const dispatch = useDispatch();
   const { isUpdateLoading, isUpdateError } = useSelector((state) => state.cart);
   let [updateqty, setupdateqty] = useState(props?.qty);
 
-  const handleQty = () => {
-    dispatch(updateCartItemQty({ cart_id: props?.id, quantity: updateqty }));
+  const handleQty = async () => {
+    let data = { limit: 6, page: 1 };
+    dispatch(updateCartItemQty({ cart_id: props?.id, quantity: updateqty }))
+      .then(() => {
+        dispatch(getCart(data));
+        toast({
+          description: `Quantity Updated`,
+
+          status: "success",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>

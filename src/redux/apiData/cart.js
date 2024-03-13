@@ -7,8 +7,9 @@ import Cookies from "js-cookie";
 export const addToCart = createAsyncThunk("add to cart", async (args, { rejectWithValue }) => {
     try {
         let token = Cookies.get('token')
-
+        // console.log("yes", args)
         const response = await axios.post(`${apiEndPoints.ADD_TO_CART}?token=${token}`, args)
+
         return response.data;
     } catch (error) {
         return rejectWithValue(error.response.data)

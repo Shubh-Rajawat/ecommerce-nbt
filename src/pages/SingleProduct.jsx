@@ -7,34 +7,54 @@ import { useDispatch, useSelector } from "react-redux";
 import { singleProductDetail } from "../redux/apiData/products";
 import { addToCart } from "../redux/apiData/cart";
 import { useToast } from "@chakra-ui/react";
+import Cookies from "js-cookie";
+import { baseUrl } from "../redux/endPoints";
 const SingleProduct = () => {
   const { id } = useParams();
+  const token = Cookies.get("token");
   const toast = useToast();
   const { singleProductData } = useSelector((state) => state.product);
   const { productData, isLoading } = useSelector((state) => state.cart);
-  console.log("add to cart", productData);
+  // console.log("add to cart", productData);
   const [isLiked, setIsLiked] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(singleProductDetail({ id: id }));
   }, []);
-
+  // console.log("singleProductData", singleProductData);
   const handleAddToCart = async () => {
     let data = {
       quantity: 1,
-      product_id: singleProductData?._id,
+      product_id: singleProductData?.id,
     };
-    dispatch(addToCart(data));
-    if (productData?.status === true) {
+
+    if (token == "undefined" || !token) {
       toast({
-        description: `Item Added`,
-        status: "success",
+        description: `Login Required`,
+        status: "warning",
         position: "top",
         duration: 3000,
         isClosable: true,
       });
+      return false;
     }
+
+    dispatch(addToCart(data))
+      .then(() => {
+        if (productData?.status === true) {
+          toast({
+            description: `Item Added`,
+            status: "success",
+            position: "top",
+            duration: 3000,
+            isClosable: true,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -43,7 +63,7 @@ const SingleProduct = () => {
         <div className="flex gap-10 md:flex-row flex-col">
           <div className=" relative overflow-hidden rounded-[50px] flex-1">
             <img
-              src={singleProductData?.image}
+              src={`${baseUrl}/${singleProductData?.feature_img}`}
               alt=""
               className=" object-cover h-full w-full "
             />

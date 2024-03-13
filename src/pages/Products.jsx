@@ -12,15 +12,8 @@ import b1 from "../static/assets/b1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../redux/apiData/products";
 import { useEffect } from "react";
+import { baseUrl } from "../redux/endPoints";
 
-const data = [
-  { name: "Luger Burger", image: p5 },
-  { name: "Luger Burger", image: p5 },
-  { name: "Luger Burger sdsd dsf sdf  dsfgsdsd sdf", image: p5 },
-  { name: "Luger Burger", image: p5 },
-  { name: "Luger Burger", image: p5 },
-  { name: "Luger Burger", image: p5 },
-];
 const bannerData = {
   title: "Menu",
   img: b1,
@@ -32,7 +25,7 @@ const Products = () => {
 
   const para = {
     page: 1,
-    limit: 4,
+    limit: 100,
     search: "",
     reating: 3.5,
     from: 20,
@@ -54,14 +47,14 @@ const Products = () => {
                 let slug = item?.name?.replaceAll(" ", "-").toLowerCase();
                 return (
                   <div
-                    className=" rounded-2xl p-4 shadow-1  duration-300 cursor-pointer"
+                    className=" rounded-2xl p-4 shadow-1  duration-300 cursor-pointer flex flex-col justify-between"
                     key={index}
                     onClick={() => {
-                      navigate(`/info/${item?._id}/${slug}`);
+                      navigate(`/info/${item?.id}/${slug}`);
                     }}
                   >
                     <div className=" rounded-2xl  overflow-hidden">
-                      <img src={item?.image} alt="" />
+                      <img src={`${baseUrl}/${item?.feature_img}`} alt="img" />
                     </div>
                     <div className="flex mt-3 justify-between gap-3">
                       <div className=" overflow-hidden">

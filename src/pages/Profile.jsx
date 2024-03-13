@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import { FaClipboardList, FaEdit, FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineLanguage } from "react-icons/md";
@@ -8,6 +8,9 @@ import { ImLocation } from "react-icons/im";
 
 import SmallCard from "../components/profile/SmallCard";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../redux/apiData/user";
+import { Avatar } from "@chakra-ui/react";
 
 const data = [
   {
@@ -36,6 +39,25 @@ const data = [
 ];
 const Profile = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLoading, isError, profileData } = useSelector(
+    (state) => state.user
+  );
+  const [addrss, setAddress] = useState(
+    profileData?.address?.streetAddress +
+      " " +
+      profileData?.address?.city +
+      ", " +
+      profileData?.address?.postalCode +
+      ", " +
+      profileData?.address?.state +
+      ", " +
+      profileData?.address?.country
+  );
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+  // console.log("profileData", profileData);
   return (
     <>
       <BreadCrumb
@@ -59,28 +81,31 @@ const Profile = () => {
               <FaEdit color="white" size={22} className="" />
             </div>
             <div className="">
-              <span className="">
-                <img
-                  src={`https://bit.ly/dan-abramov`}
-                  alt=""
-                  className="h-28 md:h-40 rounded-full "
-                  style={{
-                    border: "4px solid #D63348",
-                  }}
-                />
-              </span>
+              <Avatar
+                size={"2xl"}
+                src={profileData?.data?.image}
+                alt=""
+                className="rounded-full "
+                style={{
+                  border: "4px solid #D63348",
+                }}
+              />
+
               <div className="mt-3">
                 <h3 className="popins font-semibold text-[20px]  md:text-[24px]">
-                  John Doe
+                  {profileData?.data?.name}
                 </h3>
                 <div className=" my-2 popins text-16px md:text-[18px] text-[#777777]">
-                  examplejohn@gmail.com
+                  {profileData?.data?.email}
                 </div>
                 <div className=" flex items-center gap-4 my-6 popins text-[16px] md:text-[18px]">
                   <div className="bg-[#D63348] text-white rounded-full  ">
                     <FaPhoneAlt className="  m-2" size={22} />
                   </div>
-                  <span className="text-[#777777]">+234 9011039271</span>
+                  <span className="text-[#777777]">
+                    +{profileData?.data?.country_code}{" "}
+                    {profileData?.data?.phone_number}
+                  </span>
                 </div>
                 <div className=" flex items-center gap-4 popins text-[16px] md:text-[18px] my-2 ">
                   <div className="bg-[#D63348] text-white rounded-full">
@@ -89,9 +114,7 @@ const Profile = () => {
                       size={22}
                     />
                   </div>
-                  <span className="text-[#777777]">
-                    No 15 Test Street London, UK, SE1 1AB
-                  </span>
+                  <span className="text-[#777777]">{addrss}</span>
                 </div>
               </div>
             </div>

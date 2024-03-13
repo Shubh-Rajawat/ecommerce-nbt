@@ -24,7 +24,7 @@ const Protected = (props) => {
       isClosable: true,
     });
   };
-  return <>{login !== "undefined" && login && <Component />};</>;
+  return login !== "undefined" && login && <Component />;
 };
 
 export default Protected;

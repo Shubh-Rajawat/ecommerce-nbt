@@ -21,6 +21,7 @@ import RewardPointPage from "./pages/RewardPointPage";
 
 import Protected from "./components/Protected";
 import OrderDetails from "./pages/OrderDetails";
+import Payment from "./pages/Payment";
 function App() {
   return (
     <>
@@ -43,7 +44,8 @@ function App() {
           <Route path="/profile/settings" element={<Protected Component={ProfileSettings} />} />
           <Route path="/profile/help-and-support" element={<HelpAndSupport />} />
           <Route path="/reward-points" element={<Protected Component={RewardPointPage} />} />
-            <Route path="/order-details" element={<OrderDetails />} />
+          <Route path="/place-order" element={<Protected Component={Payment} />} />
+          <Route path="/order-details" element={<OrderDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

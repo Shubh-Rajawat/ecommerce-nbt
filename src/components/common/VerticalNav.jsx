@@ -21,7 +21,17 @@ const VerticalNav = (props) => {
       setToken(true);
     }
   }, [tokn, token, userData]);
-  console.log(token);
+  // console.log(token);
+
+  const showToast = () => {
+    toast({
+      description: `Login required`,
+      status: "warning",
+      position: "top",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
   return (
     <>
       <Drawer
@@ -76,12 +86,21 @@ const VerticalNav = (props) => {
                   className="text-[#09405E] ramto  transition-colors"
                   onClick={props?.onClose}
                 >
-                  <Link
-                    className="hover:text-yellow-500 cursor-pointer"
-                    to="/notification"
-                  >
-                    Notification
-                  </Link>
+                  {token ? (
+                    <Link
+                      className="hover:text-yellow-500 cursor-pointer"
+                      to="/notification"
+                    >
+                      Notification
+                    </Link>
+                  ) : (
+                    <Link
+                      className="hover:text-yellow-500 cursor-pointer"
+                      onClick={showToast}
+                    >
+                      Notification
+                    </Link>
+                  )}
                 </li>
                 <li
                   className="text-[#09405E] ramto  transition-colors"
@@ -98,12 +117,6 @@ const VerticalNav = (props) => {
                   className="text-[#09405E] ramto  transition-colors"
                   onClick={props?.onClose}
                 >
-                  {/* <Link
-                    className="hover:text-yellow-500 cursor-pointer"
-                    to="/cart"
-                  >
-                    My Cart
-                  </Link> */}
                   {token ? (
                     <Link
                       to="/cart"
@@ -114,15 +127,7 @@ const VerticalNav = (props) => {
                   ) : (
                     <Link
                       className="hover:text-yellow-500 cursor-pointer"
-                      onClick={() => {
-                        toast({
-                          description: `Login required`,
-                          status: "warning",
-                          position: "top",
-                          duration: 3000,
-                          isClosable: true,
-                        });
-                      }}
+                      onClick={showToast}
                     >
                       My Cart
                     </Link>

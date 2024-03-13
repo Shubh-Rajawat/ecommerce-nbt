@@ -16,6 +16,10 @@ const userSlice = createSlice({
         removeCookie: (state, action) => {
             state.userData = null
         },
+        setisUserUpdatedNull: (state, action) => {
+            state.isUserUpdated = null
+        },
+
 
 
     },
@@ -87,7 +91,7 @@ const userSlice = createSlice({
         })
         // ------------------Fetch User ------------------------
         builder.addCase(fetchUser.fulfilled, (state, action) => {
-            state.profileData = action.payload.data
+            state.profileData = action.payload
             state.isLoading = false;
             state.isError = null;
         })
@@ -110,12 +114,13 @@ const userSlice = createSlice({
             state.isError = null;
         })
         builder.addCase(userUpdate.pending, (state, action) => {
-            // state.isUserUpdated=action.payload
+            state.isUserUpdated = null
             state.isLoading = true;
             state.isError = null;
         })
         builder.addCase(userUpdate.rejected, (state, action) => {
-            // state.isUserUpdated=action.payload
+            state.isUserUpdated = null
+
             state.isLoading = false;
             state.isError = action.payload;
         })

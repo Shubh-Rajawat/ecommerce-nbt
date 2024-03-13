@@ -36,6 +36,16 @@ const HorizontalNav = () => {
       });
     };
   }, []);
+
+  const showToast = () => {
+    toast({
+      description: `Login required`,
+      status: "warning",
+      position: "top",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
   return (
     <div
       className={` w-full h-[50px] overflow-hidden bg-transparent z-20 absolute`}
@@ -72,7 +82,11 @@ const HorizontalNav = () => {
                 className="text-white ramto hover:text-yellow-500 cursor-pointer transition-colors"
                 onClick={navClose}
               >
-                <Link to="/notification">Notification</Link>
+                {token ? (
+                  <Link to="/notification">Notification</Link>
+                ) : (
+                  <Link onClick={showToast}>Notification</Link>
+                )}
               </li>
               <li
                 className="text-white ramto hover:text-yellow-500 cursor-pointer transition-colors"
@@ -87,19 +101,7 @@ const HorizontalNav = () => {
                 {token ? (
                   <Link to="/cart">My Cart</Link>
                 ) : (
-                  <Link
-                    onClick={() => {
-                      toast({
-                        description: `Login required`,
-                        status: "warning",
-                        position: "top",
-                        duration: 3000,
-                        isClosable: true,
-                      });
-                    }}
-                  >
-                    My Cart
-                  </Link>
+                  <Link onClick={showToast}>My Cart</Link>
                 )}
               </li>
             </ul>

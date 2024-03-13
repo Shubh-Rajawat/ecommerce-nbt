@@ -10,67 +10,90 @@ import { FaTrashCan } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItem, getCart } from "../redux/apiData/cart";
-import { Button, Spinner, useToast } from "@chakra-ui/react";
+import { Spinner, useToast } from "@chakra-ui/react";
 import { cartActions } from "../redux/actions/cart";
 import UpdateQuantity from "../components/cart/UpdateQuantity";
+import { baseUrl } from "../redux/endPoints";
+import { orderActions } from "../redux/actions/order";
 const Cart = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
   const [opendel, setOpenDel] = useState(false);
+  let [tot_amt, settot_amt] = useState(0);
+
   const [itemId, setitemId] = useState();
-  const { cartData, isLoading, deleteResp, updateQtyresp } = useSelector(
+  const { cartData, isLoading, isUpdateLoading } = useSelector(
     (state) => state.cart
   );
 
-  // useEffect(() => {
-  //   dispatch(cartActions.setDeleteResp());
-  //   dispatch(getCart(data));
-  // }, [updateQtyresp]);
   let data = { limit: 6, page: 1 };
   useEffect(() => {
     dispatch(getCart(data));
-    // delete toast
-    if (deleteResp?.status === true || deleteResp?.status === false) {
-      toast({
-        description:
-          deleteResp?.status === true
-            ? `Item Removed Successfully`
-            : `Error Occured!`,
-        status: deleteResp?.status === true ? "success" : "error",
-        position: "top",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-    // dispatch(cartActions.setDeleteResp());
-    dispatch(cartActions.setDeleteResp());
-  }, [deleteResp, updateQtyresp]);
+  }, []);
 
-  useEffect(() => {
-    if (updateQtyresp?.status === true || updateQtyresp?.status === false) {
-      toast({
-        description:
-          updateQtyresp?.status === true
-            ? `Quantity Updated`
-            : `Error Occured!`,
-        status: updateQtyresp?.status === true ? "success" : "error",
-        position: "top",
-        duration: 3000,
-        isClosable: true,
+  const deleteItem = async () => {
+    dispatch(deleteCartItem({ id: itemId }))
+      .then(() => {
+        dispatch(getCart(data));
+        toast({
+          description: `Item Removed Successfully`,
+
+          status: "success",
+          position: "top",
+          duration: 3000,
+          isClosable: true,
+        });
+        setOpenDel(false);
+      })
+      .catch((err) => {
+        console.log();
       });
-    }
-  }, [updateQtyresp]);
-  const deleteItem = () => {
-    // setisSkip(true);
-    dispatch(deleteCartItem({ id: itemId }));
-    setOpenDel(false);
   };
+  // checkout to place order
+  const addItemsToPlaceOrder = () => {
+    let orderDetails = {
+      shippingInfo: {
+        address: "",
+        city: "",
+        state: "",
+        country: "",
+        pinCode: 0,
+        phoneNo: 0,
+      },
+      orderItems: [],
+      taxPrice: 0,
+      shippingPrice: 0,
+      totalPrice: 0,
+      user_id: "",
+      paymentInfo: {
+        id: "payment-id",
+        status: "Paid",
+      },
+      orderStatus: "Processing",
+    };
+    for (let i = 0; i < cartData?.data?.length; i++) {
+      let item = {
+        name: cartData?.data[i]?.Product?.name,
+        price: cartData?.data[i]?.Product?.price,
+        image: cartData?.data[i]?.Product?.feature_img,
+        quantity: cartData?.data[i]?.Product?.name,
+        product_id: cartData?.data[i]?.product_id,
+      };
+      orderDetails.orderItems.push(item);
+      orderDetails.totalPrice = tot_amt;
+    }
 
+    dispatch(orderActions.HandleOrderDetails(orderDetails));
+  };
+  // const { orderData } = useSelector((state) => state.order);
+  // console.log("orderData", orderData);
   return (
     <div>
-      {isLoading ? (
-        <CartSkull />
+      {isLoading || isUpdateLoading ? (
+        <>
+          <CartSkull />
+        </>
       ) : (
         <>
           {cartData?.data?.length ? (
@@ -79,6 +102,8 @@ const Cart = () => {
                 <div className="col-span-7  md:col-span-3 lg:col-span-4 ">
                   {cartData?.data.length > 0 &&
                     cartData?.data?.map((item, ind) => {
+                      tot_amt += item?.Product?.price * item?.quantity;
+                      console.log(item);
                       return (
                         <div
                           key={ind}
@@ -86,31 +111,29 @@ const Cart = () => {
                         >
                           <div className=" overflow-hidden flex-1 mx-auto max-h-60 grid place-content-center rounded-2xl">
                             <img
-                              src={item?.product_id?.image}
+                              src={`${baseUrl}/${item?.Product?.feature_img}`}
                               alt=""
                               className="rounded-2xl"
                             />
                           </div>
                           <div className=" flex-1 ">
-                            <h1 className="text-2cl">
-                              {item?.product_id?.name}
-                            </h1>
+                            <h1 className="text-2cl">{item?.Product?.name}</h1>
                             <p className="text-5pl   my-2">
-                              {item?.product_id?.description}
+                              {item?.Product?.description}
                             </p>
                             <div className="flex justify-between">
                               <h3 className="text-3pl">Large</h3>
                               <h4 className="text-3cl  red">
                                 {(
-                                  item?.product_id?.price * item?.quantity
+                                  item?.Product?.price * item?.quantity
                                 ).toFixed(2)}
                               </h4>
                             </div>
                             {/* <h3 className="text-3cl red my-2">1090</h3> */}
                             <UpdateQuantity
                               qty={item?.quantity}
-                              id={item?._id}
-                              key={item?._id}
+                              id={item?.id}
+                              key={item?.id}
                             />
                           </div>
                           <div className=" absolute top-0 right-0 bg-[#D63348] p-3 rounded-es-xl ">
@@ -119,7 +142,7 @@ const Cart = () => {
                               size={18}
                               className="cursor-pointer"
                               onClick={() => {
-                                setitemId(item?._id);
+                                setitemId(item?.id);
                                 setOpenDel(true);
                               }}
                             />
@@ -202,14 +225,18 @@ const Cart = () => {
                     </div>
                     <div className="flex justify-between">
                       <span className="font-bold text-xl">
-                        Total <span className="text-[#777777]">(2 items)</span>
+                        Total{" "}
+                        <span className="text-[#777777]">
+                          ({cartData?.data?.length} items)
+                        </span>
                       </span>
-                      <span className="text-1pl">600</span>
+                      <span className="text-1pl">{tot_amt.toFixed(2)}</span>
                     </div>
                     <div className=" mt-5">
                       <button
                         className="btn-red "
                         onClick={() => {
+                          addItemsToPlaceOrder();
                           navigate("/address");
                         }}
                       >

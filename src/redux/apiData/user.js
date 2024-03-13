@@ -58,7 +58,9 @@ export const userUpdate = createAsyncThunk("update", async (args, { rejectWithVa
 // fetching user profile-----
 export const fetchUser = createAsyncThunk("fetch", async (args, { rejectWithValue }) => {
     try {
-        const response = await axios.post(`${apiEndPoints.FETCH_USER}?token=${args}`)
+        let cook = Cookies.get('token')
+
+        const response = await axios.post(`${apiEndPoints.FETCH_USER}?token=${cook}`)
         return response.data
     } catch (error) {
         return rejectWithValue(error.response.data)

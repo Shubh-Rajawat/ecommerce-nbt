@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { fetchUser, userSignup, userUpdate } from "../redux/apiData/user";
-import { Avatar, AvatarBadge, Spinner, Textarea } from "@chakra-ui/react";
+import { Avatar, AvatarBadge, Spinner, useToast } from "@chakra-ui/react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import { IoIosCamera } from "react-icons/io";
-import Cookies from "js-cookie";
+
+import { userActions } from "../redux/actions/userAuth";
 
 const EditProfile = () => {
+  const fileInputRef = useRef(null);
+  const toast = useToast();
   const dispatch = useDispatch();
-  const { isLoading, isError, profileData } = useSelector(
+  const { isLoading, isError, profileData, isUserUpdated } = useSelector(
     (state) => state.user
   );
   const [value, setValue] = useState("");
 
   const [inputError, setInputError] = useState(false);
+  const [showImage, setshowimg] = useState(null);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -25,25 +29,37 @@ const EditProfile = () => {
     address: "",
   });
 
-  let token = Cookies.get("token");
-
   useEffect(() => {
-    dispatch(fetchUser(token));
+    dispatch(fetchUser());
   }, []);
+  // user image
+
+  const handleCameraClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setUser({ ...user, image: selectedFile });
+    setshowimg(selectedFile);
+  };
+  console.log("isLoading :", isLoading);
+  //
   useEffect(() => {
-    if (profileData) {
+    if (profileData?.data) {
       setUser({
         ...user,
-        name: profileData.name,
-        email: profileData.email,
-        country_code: "+" + profileData?.country_code?.toString(),
-        phone_number: profileData.phone_number,
-        image: profileData.image,
-        address: profileData.address,
+        name: profileData?.data.name,
+        email: profileData?.data.email,
+        country_code: "+" + profileData?.data?.country_code?.toString(),
+        phone_number: profileData?.data.phone_number,
+        image: profileData?.data.image,
+        address: profileData?.data.address,
       });
-      setValue(profileData?.country_code);
+      setValue(profileData?.data?.country_code);
     }
-  }, [profileData]);
+  }, [profileData?.data]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,23 +69,43 @@ const EditProfile = () => {
       return;
     }
     let formData = new FormData();
-    formData.append("id", profileData?._id);
-    formData.append("name", user?.name ? user.name : profileData?.name);
-    formData.append("email", user?.email ? user.email : profileData?.email);
-    formData.append("image", "");
+    formData.append("id", profileData?.data?.id);
+    formData.append("name", user?.name ? user.name : profileData?.data?.name);
+    formData.append(
+      "email",
+      user?.email ? user.email : profileData?.data?.email
+    );
+    formData.append(
+      "image",
+      user?.image ? user.image : profileData?.data?.image
+    );
     formData.append("country_code", Number(value));
     formData.append(
       "phone_number",
       user?.phone_number
         ? Number(user.phone_number)
-        : Number(profileData?.phone_number)
+        : Number(profileData?.data?.phone_number)
     );
 
     if (formData) {
       dispatch(userUpdate(formData));
     }
   };
-  console.log("error", user);
+
+  // user profile update toast
+  useEffect(() => {
+    if (isUserUpdated?.status === true) {
+      toast({
+        description: `Profile updated`,
+        status: "success",
+        position: "top",
+        duration: 3000,
+        isClosable: true,
+      });
+      dispatch(userActions.setisUserUpdatedNull());
+    }
+  }, [isUserUpdated]);
+
   return (
     <>
       <BreadCrumb
@@ -84,13 +120,30 @@ const EditProfile = () => {
           <div className=" grid place-content-center">
             <Avatar
               size="2xl"
-              src="https://bit.ly/dan-abramov"
+              src={!showImage ? user?.image : URL.createObjectURL(showImage)}
               style={{
                 border: "5px solid #D63348",
               }}
             >
-              <AvatarBadge borderColor="blue.900" bg="blue.900" boxSize="45px">
-                <IoIosCamera size={28} className="text-white" />
+              <AvatarBadge
+                borderColor="blue.900"
+                bg="blue.900"
+                boxSize="45px"
+                className="cursor-pointer"
+                onClick={handleCameraClick}
+              >
+                {/* <input type="file" name="" id="" />
+                <IoIosCamera size={28} className="text-white" /> */}
+                <input
+                  type="file"
+                  name=""
+                  id=""
+                  ref={fileInputRef}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
+                <IoIosCamera size={28} className="text-white " />
               </AvatarBadge>
             </Avatar>
           </div>
@@ -151,7 +204,7 @@ const EditProfile = () => {
                       international
                       style={{ width: "40px", color: "black" }}
                       countryCallingCodeEditable={false}
-                      // defaultCountry={profileData?.country_code}
+                      // defaultCountry={profileData?.data?.country_code}
                       value={user?.country_code}
                       onChange={(e) => {
                         setValue(e);
@@ -180,7 +233,7 @@ const EditProfile = () => {
                     />
                   </div>
                 </div>
-                <div className="flex flex-col items-start mt-4 relative">
+                {/* <div className="flex flex-col items-start mt-4 relative">
                   <label
                     htmlFor="address"
                     className="text-[#09405E] ramto text-[14px]"
@@ -195,14 +248,14 @@ const EditProfile = () => {
                     placeholder="Enter your complete address"
                     className="bg-white ps-3 py-1 text-[16px] resize-none  w-full focus-visible:outline-none text-[#000000] rounded-[20px]"
                   />
-                </div>
+                </div> */}
 
                 <div className="flex items-center justify-center my-4">
                   <button
                     disabled={isLoading ? true : false}
                     className="ramto bg-[#D63348] text-white rounded-3xl py-2 px-8 text-sm md:text-lg align-middle"
                   >
-                    <span>Save</span>
+                    <span>{isLoading ? "Updating..." : "Update "}</span>
                   </button>
                 </div>
               </div>
